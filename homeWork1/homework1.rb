@@ -39,6 +39,7 @@ puts "\n  Hash with a key as first letter of the first_name and value as the sec
 #Creating Array: 1 letter of first_name, 1 letter from last_name
 names_short = [first_name.map { |item| item[0] }, last_name.map { |item| item[0] }].transpose.to_a.flatten
 puts "\n  Array with first letter of the first_name and first letter of the last_name :\n #{names_short} \n"
+puts "\n  Uniq elements of array sorted: \n  #{names_short.uniq.sort} \n"
 
 #Swiching places
 switched = names.map {|item| item.split(' ').reverse.join(' ') }
