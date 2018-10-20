@@ -27,8 +27,6 @@ names.each do |full_name| full_name.strip!
       last_name << name.pop
       first_name << name.join(' ')
     end
-#first_name = @first_name.map { |item| item.split(' ').last}
-#last_name = @last_name.map { |item| item.split(' ').first}
 hash_full =[first_name, last_name].transpose.to_h
 print "\n Hash with a key as a first_name and value as last_name :\n #{hash_full} \n"
 
