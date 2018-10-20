@@ -26,28 +26,27 @@ print "\n\n Names without titles:\n #{names} \n"
 first_name = @first_name.map { |item| item.split(' ').last}
 last_name = @last_name.map { |item| item.split(' ').first}
 hash_full =[first_name, last_name].transpose.to_h
-print "\n Hash with a key as a first_name and value as last_name :\n #{hash_full}"
+print "\n Hash with a key as a first_name and value as last_name :\n #{hash_full} \n"
 
 #Creating a Hash: key - is the 1 letter of first_name, value is 2 letter from last_name
 let_first_name = first_name.map { |item| item[0] }
 let_last_name = last_name.map { |item| item[1] }
 
 hash_min = [let_first_name, let_last_name].transpose.to_h
+puts "\n  Hash with a key as first letter of the first_name and value as the second letter of the last_name :\n #{hash_min}КК"
 
-puts "\n\n  Hash with a key as first letter of the first_name and value as the second letter of the last_name :\n #{hash_min} \n \n"
-
+#Creating Array: 1 letter of first_name, 1 letter from last_name
 names_short = [first_name.map { |item| item[0] }, last_name.map { |item| item[0] }].transpose.to_a.flatten
+puts "\n  Array with first letter of the first_name and first letter of the last_name :\n #{names_short} \n \n"
 
 #Swiching places
 switched = names.map {|item| item.split(' ').reverse.join(' ') }
-
 puts "We've switched first_name and last_name: \n #{switched}"
 
 ##Integers
 numbers = Array.new(15){|i| i=rand(1000000000...9999999999) }
 puts "\n Creating Array with 15-n 10 digits numbers: \n #{numbers}"
 #Hash with key:number and value:biggest number
-
 num_hash=Hash.new
 numbers.each {|num| num_hash[num]=num.to_s.split("").max}
 puts "\n Hash with key:number and value:biggest number \n #{num_hash}"
