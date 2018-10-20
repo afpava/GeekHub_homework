@@ -45,3 +45,35 @@ switched = names.map {|item| item.split(' ').reverse.join(' ') }
 print "We've switched first_name and last_name: \n #{switched}"
 
 ##Integers
+
+numbers = Array.new(15){|i| i=rand(1000000000...9999999999) }
+puts "\n Creating Array with 15-n 10 digits numbers: \n #{numbers}"
+#Hash with key:number and value:biggest number
+#print num.to_s.split("").max
+#puts num.to_s.split("").min
+num_hash=Hash.new
+numbers.each {|num| num_hash[num]=num.to_s.split("").max}
+puts "\n Hash with key:number and value:biggest number \n #{num_hash}"
+
+#string max+min
+
+numbers.each {|num| num_str=num.to_s.split("").max+num.to_s.split("").max}
+puts num_str
+#string from bigest number + smallest number of the array number
+num_str=Array.new
+numbers.each do |num|
+num_str << num.to_s.split("").max
+num_str << num.to_s.split("").min
+  end
+puts "\n Number consists of biggest number and smallest number from array numbers #{num_str.join}"
+
+#Summ is two maximum and two minimum elements
+number = []
+numbers.each {|num| number << num.to_s.split("")}
+number.flatten!
+
+num_max = number.sort.last(2)
+num_min = number.sort.first(2)
+
+number = num_max[0].to_i + num_max[1].to_i + num_min[0].to_i+num_min[1].to_i
+puts"\n Summ is two maximum and two minimum elements \n#{num_max[0]} + #{num_max[1]} +#{num_min[0]} + #{num_min[1]} = #{number}"
