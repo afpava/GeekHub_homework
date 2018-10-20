@@ -5,7 +5,6 @@ def file_parser(file)
     names_file = File.readlines(file)
     @names = names_file.each do |full_name|
       full_name.strip!
-      name = full_name.split
     end
   else
     puts "File #{file} doesn't exist"
