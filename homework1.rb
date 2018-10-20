@@ -10,7 +10,6 @@ def file_parser(file)
       name = full_name.split
       @last_name << name.pop
       @first_name << name.join(' ')
-      name.class
     end
   else
     puts "File #{file} doesn't exist"
@@ -26,40 +25,33 @@ print "\n\n Names without titles:\n #{names} \n"
 #Creating a Hash: key - is first_name; value - is last_name
 first_name = @first_name.map { |item| item.split(' ').last}
 last_name = @last_name.map { |item| item.split(' ').first}
-a =[first_name, last_name].transpose.to_h
-print "\n Hash with a key as a first_name and value as last_name :\n #{a}"
+hash_full =[first_name, last_name].transpose.to_h
+print "\n Hash with a key as a first_name and value as last_name :\n #{hash_full}"
 
 #Creating a Hash: key - is the 1 letter of first_name, value is 2 letter from last_name
 let_first_name = first_name.map { |item| item[0] }
 let_last_name = last_name.map { |item| item[1] }
 
-b = [let_first_name, let_last_name].transpose.to_h
+hash_min = [let_first_name, let_last_name].transpose.to_h
 
-print "\n\n  Hash with a key as first letter of the first_name and value as the second letter of the last_name :\n #{b} \n \n"
+puts "\n\n  Hash with a key as first letter of the first_name and value as the second letter of the last_name :\n #{hash_min} \n \n"
 
 names_short = [first_name.map { |item| item[0] }, last_name.map { |item| item[0] }].transpose.to_a.flatten
 
 #Swiching places
 switched = names.map {|item| item.split(' ').reverse.join(' ') }
 
-print "We've switched first_name and last_name: \n #{switched}"
+puts "We've switched first_name and last_name: \n #{switched}"
 
 ##Integers
-
 numbers = Array.new(15){|i| i=rand(1000000000...9999999999) }
 puts "\n Creating Array with 15-n 10 digits numbers: \n #{numbers}"
 #Hash with key:number and value:biggest number
-#print num.to_s.split("").max
-#puts num.to_s.split("").min
+
 num_hash=Hash.new
 numbers.each {|num| num_hash[num]=num.to_s.split("").max}
 puts "\n Hash with key:number and value:biggest number \n #{num_hash}"
 
-#string max+min
-
-numbers.each {|num| num_str=num.to_s.split("").max+num.to_s.split("").max}
-puts num_str
-#string from bigest number + smallest number of the array number
 num_str=Array.new
 numbers.each do |num|
 num_str << num.to_s.split("").max
