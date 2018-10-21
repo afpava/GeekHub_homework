@@ -27,7 +27,7 @@ names.each do |full_name| full_name.strip!
       last_name << name.pop
       first_name << name.join(' ')
     end
-hash_full =[first_name, last_name].transpose.to_h
+hash_full = [first_name, last_name].transpose.to_h
 print "\n Hash with a key as a first_name and value as last_name :\n #{hash_full} \n"
 
 #Creating a Hash: key - is the 1 letter of first_name, value is 2 letter from last_name
@@ -50,12 +50,12 @@ numbers = Array.new(15){|i| i=rand(1000000000...9999999999) }
 puts "\n Creating Array with 15-n 10 digits numbers: \n #{numbers}"
 
 #Hash with key:number and value:biggest number
-num_hash=Hash.new
+num_hash = Hash.new
 numbers.each {|num| num_hash[num]=num.to_s.split("").max}
 puts "\n Hash with key:number and value:biggest number \n #{num_hash}"
 
 #Array biggest number and smallest number from array numbers
-num_str=Array.new
+num_str = Array.new
 numbers.each do |num|
 num_str << num.to_s.split("").max
 num_str << num.to_s.split("").min
