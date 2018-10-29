@@ -56,5 +56,5 @@ class MailboxHtmlFormatter < Mailbox
 #puts html_end
 #f.close
 #$stdout = old_stdout
-        end
       end
+end

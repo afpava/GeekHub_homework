@@ -15,6 +15,7 @@ class EmailsCsvStore < Email
     return emails1
   end
 end
+
 store = EmailsCsvStore.new('emails.csv')
 emails = store.read
 mailbox = Mailbox.new('Ruby Study Group', emails)

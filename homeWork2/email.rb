@@ -8,18 +8,14 @@ class Email
   end
 
   def result
-      @headers.each {
-      |head, val|
+      @headers.each do |head, val|
       puts "#{head.to_s.capitalize}: #{val}"
-
-    }
+        end
     puts "Subject: #{@subject}"
     puts "\n"
-
   end
 
   def result_html
-
     puts "                 <tr>"
     @headers.each { |head, val|
     puts "                    <td> #{val} </td>"    }
