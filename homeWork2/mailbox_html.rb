@@ -30,7 +30,7 @@ class MailboxHtmlFormatter < Mailbox
               <table>
                 <thead>
                   <tr>
-                    #{table_head.join("\n                    ")}
+                   #{table_head.join("\n                    ")}
                     <th>Subject</th>
                   </tr>
                 </thead>
@@ -45,19 +45,16 @@ class MailboxHtmlFormatter < Mailbox
       puts html
       @mails.result_html
       puts html_end
-
-f=File.new('./emails.html', 'w+')
-old_stdout = $stdout
-$stdout = f
-
-puts html
-@mails.result_html
-puts html_end
-f.close
-$stdout = old_stdout
-    end
-end
-
-#Writing to a file
-    #  email_html = File.new('./emails.html', 'w+'){|f| f.write(formatter.format)}
-    #  email_html.close
+##Generation of the file emails.html commented because it's added in emails_csv_store.rb
+#=begin
+#f=File.new('./emails.html', 'w+')
+#old_stdout = $stdout
+#$stdout = f
+#
+#puts html
+#@mails.result_html
+#puts html_end
+#f.close
+#$stdout = old_stdout
+        end
+      end

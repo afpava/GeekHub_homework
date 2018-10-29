@@ -1,3 +1,5 @@
+require 'csv'
+
 class Email
   def initialize(subject, headers)
     @subject = subject
@@ -23,5 +25,12 @@ class Email
     puts "                    <td> #{val} </td>"    }
     puts "                    <td> #{@subject} </td>"
     puts "                 </tr>"
+  end
+
+  def add
+    CSV.open('./emails.csv', "a") do |csv|
+      csv << [@headers[:date],@headers[:from], @subject]
+      end
+    puts "New record was added to emails.csv file!"
   end
 end
