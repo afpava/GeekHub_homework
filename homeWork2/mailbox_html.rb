@@ -3,22 +3,16 @@ require "./mailbox"
 class MailboxHtmlFormatter < Mailbox
 
       def initialize(mails)
-          @mails =mails
+          @mails = mails
       end
 
       def format
 
       table_head = []
-        @@headers.each {
-          |head, val|
-        table_head  << head.to_s.capitalize
-        }
+        @@header.each_key { |head| table_head  << head.to_s.capitalize  }
+        table_head.map! { |head| "<th> #{head} </th>" }
 
-        table_head.map! { |head|
-          "<tr> #{head} </tr>"
-        }
-        p table_head
-      html = <<-HEREDOC
+      html = <<-HTML
       <html>
           <head>
             <style>
@@ -36,29 +30,34 @@ class MailboxHtmlFormatter < Mailbox
               <table>
                 <thead>
                   <tr>
-                  
-                    <%  table_head.each{|head| puts head } %>
-
-
-
-                    <th>Date</th>
-                    <th>From</th>
+                    #{table_head.join("\n                    ")}
                     <th>Subject</th>
                   </tr>
                 </thead>
-                <tbody>
-                <tr>
-                  <td>#{}</td>
-                  <td>#{}</td>
-                  <td>#{}</td>
-                </tr>
-                </tbody>
-              </table>
+                HTML
+
+        html_end = <<-HTML
+                </table>
             </body>
       </html>
+  HTML
 
-      HEREDOC
       puts html
-      #puts @mails
+      @mails.result_html
+      puts html_end
+
+f=File.new('./emails.html', 'w+')
+old_stdout = $stdout
+$stdout = f
+
+puts html
+@mails.result_html
+puts html_end
+f.close
+$stdout = old_stdout
     end
 end
+
+#Writing to a file
+    #  email_html = File.new('./emails.html', 'w+'){|f| f.write(formatter.format)}
+    #  email_html.close

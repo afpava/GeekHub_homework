@@ -7,6 +7,12 @@ class Mailbox < Email
   end
 
   def result
-     @@emails.each {|mail|puts mail.result}
+    puts  @@emails.each {|mail| mail.result}
+  end
+#
+  def result_html
+    puts  "                <tbody>"
+      @@emails.each {|mail| mail.result_html}
+    puts  "                </tbody>"
   end
 end
