@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+<div class="container">
+<% @articles.each do |article| %>
+  <div class="left-panel">
+        <div class="col-xs-12 col-sm-6 col-lg-8">
+    	    <div class="panel panel-default">
+    		    <div class="panel-body">
+    				<div class="col-md-12">
+
+    						<h2><%= link_to article.title, article %></h2>
+    						<p><%= article.content %></p>
+
+    				</div>
+    			</div>
+        </div>
+      </div>
+  </div>
+  <% end %>
+</div>
+  <div class="container">
+          <%= link_to 'New Article', new_article_path, :class=>'btn btn-default' %>
+  </div>

@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+  <div class="container">
+  <div class="col-sm-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <strong>Title:</strong>
+          <%= @article.title %>
+      </div>
+      <div class="panel-body">
+        <strong>Content:</strong>
+        <%= @article.content %>
+      </div><!-- /panel-body -->
+    </div><!-- /panel panel-default -->
+<!-- /col-sm-5 -->
+
+</p>
+
+<tr class="container-fluid">
+        <td><%= link_to 'Edit', edit_article_path(@article), :class=>'btn btn-default' %></td>
+        <td><%= link_to 'Back', articles_path , :class=>'btn btn-default' %></td>
+        <td><%= link_to 'Delete', article_path(@article), :class=>'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
+
+<div>
+<h3>Comments</h3>
+    <% @article.comments.each do |comment| %>
+          <div class="container">
+          <div class="col-sm-5">
+              <div class="panel panel-default">
+              <div class="panel-heading">
+            <strong><%= comment.author %></strong>
+
+              </div>
+              <div class="panel-body">
+            <p><%= comment.body %></p>
+
+            <p><%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          </div><!-- /panel-body -->
+          </div><!-- /panel panel-default -->
+          </div><!-- /col-sm-5 -->
+        </div>
+    <% end %>
+
+<%= render 'comments/form' %>
+</div>
+</div>
+</div>
