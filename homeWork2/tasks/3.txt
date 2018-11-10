@@ -1,0 +1,31 @@
+require './email'
+email = Email.new("Homework this wheek", {date: "24-10-2018", from: "Vova"})
+email.result
+
+
+conf.echo=false
+
+require './mailbox'
+emails = [
+Email.new("Homework this wheek", {date: "24-10-2018", from: "Ferdous"}),
+Email.new("Keep on coding! :)", {date: "24-10-2018", from: "Dajana"}),
+Email.new("Re: Homework this wheek", {date: "24-10-2018", from: "Ariane"})
+]
+
+mailbox = Mailbox.new("Ruby Study Group", emails)
+mailbox.result
+
+require './mailbox_html'
+
+emails = [
+Email.new("Homework this wheek", {date: "24-10-2018", from: "Ferdous"}),
+Email.new("Keep on coding! :)", {date: "24-10-2018", from: "Dajana"}),
+Email.new("Re: Homework this wheek", {date: "24-10-2018", from: "Ariane"})
+]
+mailbox = Mailbox.new("Ruby Study Group", emails)
+formatter = MailboxHtmlFormatter.new(mailbox)
+puts formatter.format
+
+
+
+
