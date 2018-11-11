@@ -1,21 +1,51 @@
+
 <p id="notice"><%= notice %></p>
-<div class="container">
 
-<p>
-  <strong>Category:</strong>
-  <%= @category.name %>
+  <div class="container">
+  <div class="col-sm-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <strong>Categoryes:</strong>
+          <%= @category.name %>
+      </div>
+      <div class="panel-body">
+        <strong>Image:</strong>
+        <%= @category.image %>
+      </div><!-- /panel-body -->
+    </div><!-- /panel panel-default -->
+<!-- /col-sm-5 -->
+
 </p>
 
-<p>
-  <strong>Image:</strong>
-  <%= @category.image %>
-</p>
+<tr class="container-fluid">
+        <td><%= link_to 'Back', store_path(@category.store.id) , :class=>'btn btn-default' %></td>
+        <td><%= link_to 'Edit', edit_category_path(@category), :class=>'btn btn-default' %></td>
+        <td><%= link_to 'Delete', category_path(@category), :class=>'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
 
-<p>
-  <strong>Store:</strong>
-  <%= @category.store_id %>
-</p>
+<div>
+<h3>Products</h3>
+    <% @category.products.each do |product| %>
+          <div class="container">
+          <div class="col-sm-5">
+              <div class="panel panel-default">
+              <div class="panel-heading">
+            <strong><%= link_to product.name, product%></strong>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', store_path(@category.store.id) %>
+              </div>
+              <div class="panel-body">
+            <p><%= product.image %></p>
+                <tr class="container-fluid">
+                    <td><%= link_to 'Edit', edit_product_path(product),  :class=>'btn btn-default'  %></td>
+                    <td><%= link_to 'Delete', product_path(product), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+          </div><!-- /panel-body -->
+          </div><!-- /panel panel-default -->
+          </div><!-- /col-sm-5 -->
+        </div>
+    <% end %>
+
+<%= render 'products/form' %>
+</div>
+</div>
 </div>

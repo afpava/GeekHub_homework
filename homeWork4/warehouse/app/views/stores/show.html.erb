@@ -10,17 +10,17 @@
       <div class="panel-body">
         <strong>Image:</strong>
         <%= @store.image %>
-      </div><!-- /panel-body -->
-    </div><!-- /panel panel-default -->
-<!-- /col-sm-5 -->
 
 </p>
 
 <tr class="container-fluid">
         <td><%= link_to 'Edit', edit_store_path(@store), :class=>'btn btn-default' %></td>
-        <td><%= link_to 'Back', stores_path , :class=>'btn btn-default' %></td>
-        <td><%= link_to 'Delete', store_path(@store), :class=>'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', store_path(@store), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>
+</div><!-- /panel-body -->
+</div><!-- /panel panel-default -->
+<td><%= link_to 'Back', stores_path , :class=>'btn btn-default' %></td>
+<!-- /col-sm-5 -->
 
 <div>
 <h3>Categoryes</h3>
@@ -34,8 +34,10 @@
               </div>
               <div class="panel-body">
             <p><%= category.image %></p>
-
-            <p><%= link_to 'Delete', category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+            <tr class="container-fluid">
+            <td><%= link_to 'Edit', edit_category_path(category),  :class=>'btn btn-default'  %></td>
+            <td><%= link_to 'Delete', category_path(category),  :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
           </div><!-- /panel-body -->
           </div><!-- /panel panel-default -->
           </div><!-- /col-sm-5 -->

@@ -1,4 +1,4 @@
-Ви повинні створити наступні таблиці Store > Category > Product > Supplier > Vendor. 
+Ви повинні створити наступні таблиці Store > Category > Product > Supplier > Vendor.
 Стрілочки означають has_many. Всі таблиці мають однакові поля Name i Image.
 Головна сторінка це index Store. На цій сторінці я можу бачити всі записи із таблиці Store.
 Також на цій сторінці повинні бути CRUD дії. На сторінці show, повинна бути можливість створювати Category
@@ -11,5 +11,5 @@
 Також ви повинні добавити можливість загружати картінки для кожної моделі,
 можете використати плагін. І якщо зможете то ще зробити SignIn, SignUp.
 
-
+https://code.tutsplus.com/ru/articles/uploading-with-rails-and-carrierwave--cms-28409
 http://railscasts.com/episodes/250-authentication-from-scratch-revised?autoplay=true

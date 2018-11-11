@@ -1,0 +1,49 @@
+
+<p id="notice"><%= notice %></p>
+
+  <div class="container">
+  <div class="col-sm-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <strong>Suppliers:</strong>
+          <%= @supplier.name %>
+      </div>
+      <div class="panel-body">
+        <strong>Image:</strong>
+        <%= @supplier.image %>
+      </div><!-- /panel-body -->
+    </div><!-- /panel panel-default -->
+<!-- /col-sm-5 -->
+
+</p>
+
+<tr class="container-fluid">
+        <td><%= link_to 'Back', product_path(@supplier.product.id) , :class=>'btn btn-default' %></td>
+        <td><%= link_to 'Edit', edit_supplier_path(@supplier), :class=>'btn btn-default' %></td>
+        <td><%= link_to 'Delete', supplier_path(@supplier), :class=>'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
+
+<div>
+<h3>Vendors</h3>
+    <% @supplier.vendors.each do |vendor| %>
+          <div class="container">
+          <div class="col-sm-5">
+              <div class="panel panel-default">
+              <div class="panel-heading">
+            <strong><%= link_to vendor.name, vendor%></strong>
+
+              </div>
+              <div class="panel-body">
+            <p><%= vendor.image %></p>
+
+            <p><%= link_to 'Delete', vendor_path(vendor), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          </div><!-- /panel-body -->
+          </div><!-- /panel panel-default -->
+          </div><!-- /col-sm-5 -->
+        </div>
+    <% end %>
+
+<%= render 'vendors/form' %>
+</div>
+</div>
+</div>

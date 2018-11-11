@@ -1,6 +1,6 @@
 <h1>Editing Comment</h1>
 
-<%= render 'form', comment: @comment %>
+<%= render 'form', category: @category %>
 
-<%= link_to 'Show', @comment %> |
-<%= link_to 'Back', comments_path %>
+<%= link_to 'Show', @category %> |
+<%= link_to 'Back', store_path(@category.store.id) %>

@@ -1,0 +1,28 @@
+
+<p id="notice"><%= notice %></p>
+
+  <div class="container">
+  <div class="col-sm-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <strong>Vendors:</strong>
+          <%= @vendor.name %>
+      </div>
+      <div class="panel-body">
+        <strong>Image:</strong>
+        <%= @vendor.image %>
+
+        </p>
+
+      <tr class="container-fluid">
+              <td><%= link_to 'Back', supplier_path(@vendor.supplier.id) , :class=>'btn btn-default' %></td>
+              <td><%= link_to 'Edit', edit_vendor_path(@vendor), :class=>'btn btn-default' %></td>
+              <td><%= link_to 'Delete', vendor_path(@vendor), :class=>'btn btn-danger  pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    </div><!-- /panel-body -->
+</div><!-- /panel panel-default -->
+<!-- /col-sm-5 -->
+
+
+</div>
+</div>

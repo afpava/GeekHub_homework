@@ -1,18 +1,17 @@
-<div class="container">
-<%= form_with model: @category, local: true do |form| %>
-  <% if @category.errors.any? %>
+<%= form_with model: @vendor, local: true do |form| %>
+  <% if @vendor.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+      <h2><%= pluralize(@vendor.errors.count, "error") %> prohibited this vendor from being saved:</h2>
 
       <ul>
-      <% @category.errors.full_messages.each do |message| %>
+      <% @vendor.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 <div class="container">
-  <h3> Cteate Category </h3>
+  <h3> Create vendor </h3>
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
@@ -24,7 +23,7 @@
   </div>
 
   <div>
-    <%= form.hidden_field :store_id %>
+    <%= form.hidden_field :supplier_id %>
 
   </div>
 </div>
@@ -32,4 +31,3 @@
     <%= form.submit %>
   </div>
 <% end %>
-</div>
