@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+  <div class="container">
+  <div class="col-sm-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <strong>Store:</strong>
+          <%= @store.name %>
+      </div>
+      <div class="panel-body">
+        <strong>Image:</strong>
+        <%= @store.image %>
+      </div><!-- /panel-body -->
+    </div><!-- /panel panel-default -->
+<!-- /col-sm-5 -->
+
+</p>
+
+<tr class="container-fluid">
+        <td><%= link_to 'Edit', edit_store_path(@store), :class=>'btn btn-default' %></td>
+        <td><%= link_to 'Back', stores_path , :class=>'btn btn-default' %></td>
+        <td><%= link_to 'Delete', store_path(@store), :class=>'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
+
+<div>
+<h3>Categoryes</h3>
+    <% @store.categories.each do |category| %>
+          <div class="container">
+          <div class="col-sm-5">
+              <div class="panel panel-default">
+              <div class="panel-heading">
+            <strong><%= link_to category.name, category%></strong>
+
+              </div>
+              <div class="panel-body">
+            <p><%= category.image %></p>
+
+            <p><%= link_to 'Delete', category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          </div><!-- /panel-body -->
+          </div><!-- /panel panel-default -->
+          </div><!-- /col-sm-5 -->
+        </div>
+    <% end %>
+
+<%= render 'categories/form' %>
+</div>
+</div>
+</div>
