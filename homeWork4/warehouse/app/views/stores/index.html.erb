@@ -12,15 +12,17 @@
     				<div class="col-md-12">
 
     						<h2><%= link_to store.name, store %></h2>
-    						<p><%= store.image %></p>
-
+            <div class="pull-left col-md-4 col-xs-12 thumb-image">
+                <p><%= image_tag(store.image.url, alt: 'Image', :class =>'center-block img-responsive') if store.image? %></p>
+                <p><%#= store.image %></p>
+            </div>
+          </div>
                 <tr class="container-fluid pull-right">
 
                         <td><%= link_to 'Edit', edit_store_path(store), :class=>'btn btn-default' %></td>
                         <td><%= link_to 'Delete', store_path(store), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 </tr>
 
-              </div>
             </div>
           </div>
 

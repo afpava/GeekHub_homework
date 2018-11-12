@@ -9,20 +9,21 @@
           <%= @category.name %>
       </div>
       <div class="panel-body">
-        <strong>Image:</strong>
-        <%= @category.image %>
-      </div><!-- /panel-body -->
-    </div><!-- /panel panel-default -->
-<!-- /col-sm-5 -->
-
-</p>
+        <div class="col-md-12">
+          <div class="pull-left col-md-4 col-xs-12 thumb-image">
+            <p><%= image_tag(@category.image.url, alt: 'Image', :class =>'center-block img-responsive') if @category.image? %></p>
+          </div>
+        </div>
 
 <tr class="container-fluid">
-        <td><%= link_to 'Back', store_path(@category.store.id) , :class=>'btn btn-default' %></td>
         <td><%= link_to 'Edit', edit_category_path(@category), :class=>'btn btn-default' %></td>
-        <td><%= link_to 'Delete', category_path(@category), :class=>'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', category_path(@category), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>
 
+        </div><!-- /panel-body -->
+    </div><!-- /panel panel-default -->
+<!-- /col-sm-5 -->
+<td><%= link_to 'Back', store_path(@category.store.id) , :class=>'btn btn-default' %></td>
 <div>
 <h3>Products</h3>
     <% @category.products.each do |product| %>
@@ -33,8 +34,12 @@
             <strong><%= link_to product.name, product%></strong>
 
               </div>
-              <div class="panel-body">
-            <p><%= product.image %></p>
+            <div class="panel-body">
+              <div class="col-md-12">
+                <div class="pull-left col-md-4 col-xs-12 thumb-image">
+                    <p><%= image_tag(product.image.url, alt: 'Image', :class =>'center-block img-responsive') if product.image? %></p>
+                </div>
+              </div>
                 <tr class="container-fluid">
                     <td><%= link_to 'Edit', edit_product_path(product),  :class=>'btn btn-default'  %></td>
                     <td><%= link_to 'Delete', product_path(product), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>

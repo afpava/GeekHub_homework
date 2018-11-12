@@ -9,19 +9,20 @@
           <%= @vendor.name %>
       </div>
       <div class="panel-body">
-        <strong>Image:</strong>
-        <%= @vendor.image %>
-
-        </p>
+        <div class="col-md-12">
+          <div class="pull-left col-md-4 col-xs-12 thumb-image">
+              <p><%= image_tag(@vendor.image.url, alt: 'Image', :class =>'center-block img-responsive') if @vendor.image? %></p>
+          </div>
+        </div>
 
       <tr class="container-fluid">
-              <td><%= link_to 'Back', supplier_path(@vendor.supplier.id) , :class=>'btn btn-default' %></td>
               <td><%= link_to 'Edit', edit_vendor_path(@vendor), :class=>'btn btn-default' %></td>
               <td><%= link_to 'Delete', vendor_path(@vendor), :class=>'btn btn-danger  pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     </div><!-- /panel-body -->
 </div><!-- /panel panel-default -->
 <!-- /col-sm-5 -->
+<td><%= link_to 'Back', supplier_path(@vendor.supplier.id) , :class=>'btn btn-default' %></td>
 
 
 </div>

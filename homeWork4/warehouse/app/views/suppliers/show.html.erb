@@ -9,19 +9,21 @@
           <%= @supplier.name %>
       </div>
       <div class="panel-body">
-        <strong>Image:</strong>
-        <%= @supplier.image %>
-      </div><!-- /panel-body -->
-    </div><!-- /panel panel-default -->
-<!-- /col-sm-5 -->
+        <div class="col-md-12">
+          <div class="pull-left col-md-4 col-xs-12 thumb-image">
+            <p><%= image_tag(@supplier.image.url, alt: 'Image', :class =>'center-block img-responsive') if @supplier.image? %></p>
+          </div>
+        </div>
 
 </p>
 
 <tr class="container-fluid">
-        <td><%= link_to 'Back', product_path(@supplier.product.id) , :class=>'btn btn-default' %></td>
         <td><%= link_to 'Edit', edit_supplier_path(@supplier), :class=>'btn btn-default' %></td>
-        <td><%= link_to 'Delete', supplier_path(@supplier), :class=>'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', supplier_path(@supplier), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
 </tr>
+    </div><!-- /panel-body -->
+  </div><!-- /panel panel-default -->
+  <td><%= link_to 'Back', product_path(@supplier.product.id) , :class=>'btn btn-default' %></td>
 
 <div>
 <h3>Vendors</h3>
@@ -34,9 +36,16 @@
 
               </div>
               <div class="panel-body">
-            <p><%= vendor.image %></p>
+                <div class="col-md-12">
+                  <div class="pull-left col-md-4 col-xs-12 thumb-image">
+                      <p><%= image_tag(vendor.image.url, alt: 'Image', :class =>'center-block img-responsive') if vendor.image? %></p>
+                  </div>
+            </div>
+            <tr class="container-fluid">
+                <td><%= link_to 'Edit', edit_vendor_path(vendor), :class=>'btn btn-default' %></td>
+                <td><%= link_to 'Delete', supplier_path(vendor), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
 
-            <p><%= link_to 'Delete', vendor_path(vendor), method: :delete, data: { confirm: 'Are you sure?' } %></p>
           </div><!-- /panel-body -->
           </div><!-- /panel panel-default -->
           </div><!-- /col-sm-5 -->

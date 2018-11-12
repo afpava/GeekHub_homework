@@ -43,7 +43,7 @@ class VendorsController < ApplicationController
   def update
     respond_to do |format|
       if @vendor.update(vendor_params)
-        format.html { redirect_to vendor_path(@vendor.supplier.id), notice: 'vendor was successfully updated.' }
+        format.html { redirect_to supplier_path(@vendor.supplier.id), notice: 'vendor was successfully updated.' }
         format.json { render :show, status: :ok, location: @vendor }
       else
         format.html { render :edit }

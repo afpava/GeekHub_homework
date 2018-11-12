@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
 <%= form_with model: @category, local: true do |form| %>
   <% if @category.errors.any? %>
     <div id="error_explanation">
@@ -11,25 +11,26 @@
       </ul>
     </div>
   <% end %>
-<div class="container">
+
+<div class="panel-heading">
+
   <h3> Cteate Category </h3>
-  <div class="field">
+  <div class="input-block-level">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
-
-  <div class="field">
+</div>
+<div class="panel-body">
+  <div class="input-block-level">
     <%= form.label :image %>
-    <%= form.text_field :image %>
-  </div>
+    <%= form.file_field :image %>
 
-  <div>
     <%= form.hidden_field :store_id %>
-
   </div>
 </div>
-  <div class="actions">
+  <div class="action">
     <%= form.submit %>
+  </div>
   </div>
 <% end %>
 </div>
