@@ -5,7 +5,7 @@
   <div class="col-sm-9">
     <div class="panel panel-default">
       <div class="panel-heading">
-          <strong>Categoryes:</strong>
+          <strong>Category:</strong>
           <%= @category.name %>
       </div>
       <div class="panel-body">
@@ -25,7 +25,7 @@
 <!-- /col-sm-5 -->
 <td><%= link_to 'Back', store_path(@category.store.id) , :class=>'btn btn-default' %></td>
 <div>
-<h3>Products</h3>
+<h3><%= 'Products:' if @category.products.any? %> </h3>
     <% @category.products.each do |product| %>
           <div class="container">
           <div class="col-sm-5">
@@ -49,7 +49,7 @@
           </div><!-- /col-sm-5 -->
         </div>
     <% end %>
-
+<h3> Create Product:</h3>
 <%= render 'products/form' %>
 </div>
 </div>

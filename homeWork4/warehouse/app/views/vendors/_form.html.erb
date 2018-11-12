@@ -10,22 +10,31 @@
       </ul>
     </div>
   <% end %>
+</div>
 <div class="container">
-  <h3> Create vendor </h3>
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+  <div class="container">
+    <div class="col-sm-9">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <%#= form.label :name %>
+          
+          <%= form.text_field :name , class: 'input-block-level', autofocus: true, placeholder: 'Vendor name' %>
+        </div>
 
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-
-    <%= form.hidden_field :supplier_id %>
-
+      <div class="panel-body">
+        <div class="col-md-12">
+            <%= form.label :image %>
+            <%=  form.file_field :image  %>
+            <%= form.hidden_field :supplier_id %>
+          </div>
+              <div class="container-fluid">
+                 <div class="actions">
+                      <%= form.submit  class: 'btn btn-default' %>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
   </div>
 </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>

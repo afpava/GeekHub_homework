@@ -13,7 +13,7 @@
             <p><%= image_tag(@store.image.url, alt: 'Image', :class =>'center-block img-responsive') if @store.image? %></p>
           </div>
         </div>
-    <tr class="container-fluid">
+    <tr>
         <td><%= link_to 'Edit', edit_store_path(@store), :class=>'btn btn-default' %></td>
         <td><%= link_to 'Delete', store_path(@store), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
@@ -23,7 +23,7 @@
 <!-- /col-sm-5 -->
 
 <div>
-<h3>Categoryes</h3>
+<h3><%= 'Categories:' if @store.categories.any? %></h3>
     <% @store.categories.each do |category| %>
         <div class="container">
           <div class="col-sm-5">
@@ -48,6 +48,7 @@
     </div><!-- /col-sm-5 -->
   </div>
     <% end %>
+    <h3>Create category</h3>
 
     <%= render 'categories/form' %>
 

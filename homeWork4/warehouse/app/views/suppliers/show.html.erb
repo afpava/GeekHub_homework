@@ -26,7 +26,7 @@
   <td><%= link_to 'Back', product_path(@supplier.product.id) , :class=>'btn btn-default' %></td>
 
 <div>
-<h3>Vendors</h3>
+<h3><%= 'Vendors:' if @supplier.vendors.any? %></h3>
     <% @supplier.vendors.each do |vendor| %>
           <div class="container">
           <div class="col-sm-5">
@@ -51,7 +51,7 @@
           </div><!-- /col-sm-5 -->
         </div>
     <% end %>
-
+<h3> Create Vendor:</h3>
 <%= render 'vendors/form' %>
 </div>
 </div>

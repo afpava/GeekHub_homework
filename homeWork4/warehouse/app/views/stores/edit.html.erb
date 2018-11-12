@@ -1,6 +1,10 @@
 <h1>Editing Store</h1>
+<div class="container">
+    <%= render 'form', product: @store %>
 
-<%= render 'form', product: @store %>
+      <tr class="container-fluid pull-right">
 
-<%= link_to 'Show', @store %> |
-<%= link_to 'Back', root_url %>
+              <td><%= link_to 'Back', root_url, :class=>'btn btn-default', data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Show', @store, :class=>'btn btn-default' %></td>
+      </tr>
+</div>

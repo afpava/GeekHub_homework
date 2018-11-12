@@ -1,4 +1,3 @@
-<div class="container-fluid">
 <%= form_with model: @category, local: true do |form| %>
   <% if @category.errors.any? %>
     <div id="error_explanation">
@@ -11,26 +10,28 @@
       </ul>
     </div>
   <% end %>
+  <div class="container">
+    <div class="col-sm-9">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+        <%#= form.label :name %>
+          <%= form.text_field :name , class: 'input-block-level', autofocus: true, placeholder: 'Category name' %>
+        </div>
 
-<div class="panel-heading">
-
-  <h3> Cteate Category </h3>
-  <div class="input-block-level">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+            <%= form.label :image %>
+            <%=  form.file_field :image  %>
+            <%= form.hidden_field :store_id %>
+          </div>
+              <div class="container-fluid">
+                 <div class="actions">
+                      <%= form.submit  class: 'btn btn-default' %>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
 </div>
-<div class="panel-body">
-  <div class="input-block-level">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
 
-    <%= form.hidden_field :store_id %>
-  </div>
-</div>
-  <div class="action">
-    <%= form.submit %>
-  </div>
-  </div>
 <% end %>
-</div>
