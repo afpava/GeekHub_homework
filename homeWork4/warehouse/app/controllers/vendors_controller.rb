@@ -30,10 +30,10 @@ class VendorsController < ApplicationController
       if @vendor.save
       #  format.html { redirect_to @vendor, notice: 'vendor was successfully created.' }
         format.html { redirect_to supplier_path(@vendor.supplier.id) }
-        format.json { render :show, status: :created, location: @vendor }
+      #  format.json { render :show, status: :created, location: @vendor }
       else
         format.html { render :new }
-        format.json { render json: @vendor.errors, status: :unprocessable_entity }
+      #  format.json { render json: @vendor.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,10 +44,10 @@ class VendorsController < ApplicationController
     respond_to do |format|
       if @vendor.update(vendor_params)
         format.html { redirect_to supplier_path(@vendor.supplier.id), notice: 'vendor was successfully updated.' }
-        format.json { render :show, status: :ok, location: @vendor }
+      #  format.json { render :show, status: :ok, location: @vendor }
       else
         format.html { render :edit }
-        format.json { render json: @vendor.errors, status: :unprocessable_entity }
+      #  format.json { render json: @vendor.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,7 +58,7 @@ class VendorsController < ApplicationController
     @vendor.destroy
     respond_to do |format|
       format.html { redirect_to supplier_path(@vendor.supplier.id), notice: 'vendor was successfully destroyed.' }
-      format.json { head :no_content }
+    #  format.json { head :no_content }
     end
   end
 
