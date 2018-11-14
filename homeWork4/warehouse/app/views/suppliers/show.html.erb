@@ -18,8 +18,10 @@
 </p>
 
 <tr class="container-fluid">
+  <% if current_user %>
         <td><%= link_to 'Edit', edit_supplier_path(@supplier), :class=>'btn btn-default' %></td>
         <td><%= link_to 'Delete', supplier_path(@supplier), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <% end %>
 </tr>
     </div><!-- /panel-body -->
   </div><!-- /panel panel-default -->
@@ -42,8 +44,10 @@
                   </div>
             </div>
             <tr class="container-fluid">
+              <% if current_user %>
                 <td><%= link_to 'Edit', edit_vendor_path(vendor), :class=>'btn btn-default' %></td>
                 <td><%= link_to 'Delete',vendor_path(vendor), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
             </tr>
 
           </div><!-- /panel-body -->
@@ -51,8 +55,10 @@
           </div><!-- /col-sm-5 -->
         </div>
     <% end %>
+    <% if current_user %>
 <h3> Create Vendor:</h3>
 <%= render 'vendors/form' %>
+    <% end %>
 </div>
 </div>
 </div>

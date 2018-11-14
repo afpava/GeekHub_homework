@@ -1,5 +1,5 @@
 <div class="container">
-  <%= link_to 'New store', new_store_path, :class=>'btn btn-default' %>
+  <%= link_to 'New store', new_store_path, :class=>'btn btn-default' if current_user %>
 </div>
 <h1>Stores</h1>
 <p id="notice"><%= notice %></p>
@@ -18,9 +18,10 @@
             </div>
           </div>
                 <tr class="container-fluid pull-right">
-
+<% if current_user %>
                         <td><%= link_to 'Edit', edit_store_path(store), :class=>'btn btn-default' %></td>
                         <td><%= link_to 'Delete', store_path(store), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<%end%>
                 </tr>
 
             </div>

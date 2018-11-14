@@ -14,8 +14,10 @@
           </div>
         </div>
     <tr>
+      <% if current_user %>
         <td><%= link_to 'Edit', edit_store_path(@store), :class=>'btn btn-default' %></td>
         <td><%= link_to 'Delete', store_path(@store), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <%end%>
     </tr>
   </div><!-- /panel-body -->
 </div><!-- /panel panel-default -->
@@ -39,8 +41,10 @@
                 </div>
             </div>
             <tr class="container-fluid">
+          <% if current_user %>
             <td><%= link_to 'Edit', edit_category_path(category),  :class=>'btn btn-default'  %></td>
             <td><%= link_to 'Delete', category_path(category),  :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%end%>
             </tr>
 
           </div><!-- /panel-body -->
@@ -48,10 +52,13 @@
     </div><!-- /col-sm-5 -->
   </div>
     <% end %>
+
+  <% if current_user %>
+
     <h3>Create category</h3>
 
     <%= render 'categories/form' %>
-
+  <% end %>
 </div>
 </div>
 </div>
