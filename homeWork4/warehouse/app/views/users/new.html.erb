@@ -34,5 +34,6 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
+  <%= hidden_field_tag :referer, (params[:referer] || request.env['HTTP_REFERER']) %>
   <div class="actions"><%= f.submit "Sign Up" %></div>
 <% end %>

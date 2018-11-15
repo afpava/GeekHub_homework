@@ -13,7 +13,7 @@
 <header>
   <div class="container pull-right">
   <% if current_user %>
-    Logged in as <%= current_user.name %>.
+    Logged in as <b> <%= current_user.name %></b>. 
     <%= link_to "Log Out", logout_path %>
   <% else %>
     <%= link_to "Sign Up", signup_path %> or

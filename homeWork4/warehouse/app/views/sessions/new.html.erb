@@ -1,4 +1,4 @@
-<% if request.referrer == sessions_path %>
+<% if request.referrer == login_url %>
 <%= link_to 'Back', :back , :class=>'btn btn-default' %>
 <% else %>
 <%= link_to 'Back', root_url , :class=>'btn btn-default' %>
