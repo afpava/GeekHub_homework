@@ -1,5 +1,8 @@
-
-
+<% if request.referrer == sessions_path %>
+<%= link_to 'Back', :back , :class=>'btn btn-default' %>
+<% else %>
+<%= link_to 'Back', root_url , :class=>'btn btn-default' %>
+<% end %>
 <h1>Log In</h1>
 <% flash.each do |key, value| %>
     <div class="flash <%= key %>"><%= value %></div>
@@ -14,5 +17,7 @@
     <%= label_tag :password %><br />
     <%= password_field_tag :password %>
   </div>
+  <%= hidden_field_tag :referer, (params[:referer] || request.env['HTTP_REFERER']) %>
   <div class="actions"><%= submit_tag "Log In" %></div>
 <% end %>
+</br>
