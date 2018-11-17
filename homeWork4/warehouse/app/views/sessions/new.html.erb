@@ -1,8 +1,4 @@
-<% if request.referrer == login_url %>
-<%= link_to 'Back', :back , :class=>'btn btn-default' %>
-<% else %>
-<%= link_to 'Back', root_url , :class=>'btn btn-default' %>
-<% end %>
+<%= link_to 'Back', @path_back , :class=>'btn btn-default' %>
 <h1>Log In</h1>
 <% flash.each do |key, value| %>
     <div class="flash <%= key %>"><%= value %></div>
