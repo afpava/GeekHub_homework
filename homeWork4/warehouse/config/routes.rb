@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   get 'logout' => 'sessions#destroy'
-  
+
   resources :users
-  resources :sessions
+  resources :sessions , except: [:index, :edit, :update]
   resources :stores
   resources :categories
   resources :products

@@ -1,36 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Werhouse</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Werhouse</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
 <header>
-  <div class="container pull-right">
-  <% if current_user %>
-    Logged in as <b> <%= current_user.name %></b>. 
-    <%= link_to "Log Out", logout_path %>
-  <% else %>
-    <%= link_to "Sign Up", signup_path %> or
-    <%= link_to "Log In", login_path %>
-  <% end %>
-</div>
+  <nav>
+    <div class="navbar navbar-default navbar-fixed-top">
+       <div class="container">
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li> <%= link_to "Home", root_url %> </li>
+        </ul>
+
+
+        <% if current_user %>
+
+        <ul class="nav navbar-nav navbar-right">
+          <p class="navbar-text">   Logged in as <b> <%= current_user.name %></b>.</p>
+          <li> <%= link_to "Log Out", logout_path %> </li>
+        </ul>
+        <% else %>
+        <ul class="nav navbar-nav navbar-left">
+          <li> <%= link_to "Sign Up", signup_path %> </li>
+          <li> <%#= link_to "Log In", login_path %> </li>
+        </ul>
+        <div class="nav navbar-nav navbar-right">
+          <%= render 'sessions/nav_form' %>
+        </div>
+          <% end %>
+
+      </div>
+    </div>
+  </div>
+  </nav>
 </header>
 
-  <body class='container'>
-    <%= yield %>
-  </body>
+<body class='container'>
+  <%= yield %>
+</body>
 
-  <footer>
-    <div class="container text-center">
-        -=pVa=- 2018
-    </div>
+<footer>
+  <div class="navbar-fixed-bottom row-fluid">
+      <div class="navbar-inner">
+          <div class="container text-center">
+    -=pVa=- 2018
+  </div>
+</div>
+</div>
 </footer>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 </html>

@@ -21,7 +21,9 @@
       <div class="panel-body">
         <div class="col-md-12">
             <%= form.label :image %>
-            <%=  form.file_field :image  %>
+
+              <%=  form.file_field :image, accept: 'image/png,image/gif,image/jpeg'%>
+            
             <%= form.hidden_field :store_id %>
           </div>
               <div class="container-fluid">

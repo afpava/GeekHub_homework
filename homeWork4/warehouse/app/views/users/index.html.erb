@@ -2,31 +2,30 @@
 <h1>Users</h1>
 <p id="notice"><%= notice %></p>
 <div class="container">
-<% @users.each do |user| %>
+  <% @users.each do |user| %>
   <div class="left-panel">
-        <div class="col-xs-12 col-sm-6 col-lg-8">
-    	    <div class="panel panel-default">
-    		    <div class="panel-body">
-    				<div class="col-md-12">
+    <div class="col-xs-12 col-sm-6 col-lg-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="col-md-12">
 
-    						<h2><%= user.name %></h2>
+            <h2><%= user.name %></h2>
             <div class="pull-left col-md-4 col-xs-12">
               <p><%= user.email %></p>
-                <p><%#= store.image %></p>
             </div>
           </div>
-                <tr class="container-fluid pull-right">
+          <tr class="container-fluid pull-right">
             <% if current_user && !(current_user.id == user.id)%>
-                        <td><%= link_to 'Edit', edit_user_path(user), :class=>'btn btn-default' %></td>
-                        <td><%= link_to 'Delete', user_path(user), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td><%#= link_to 'Edit', edit_user_path(user), :class=>'btn btn-default' %></td>
+            <td><%= link_to 'Delete', user_path(user), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <%end%>
-                </tr>
-
-            </div>
-          </div>
+          </tr>
 
         </div>
       </div>
+
+    </div>
+  </div>
   <% end %>
 
 </div>

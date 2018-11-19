@@ -10,16 +10,27 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
- .thumb-image{
+// @import "bootstrap-sprockets";
+ @import "bootstrap";
 
-     margin-bottom:1%;
-     margin-left: 0px;
-     padding-left: 0px;
+  body { padding-top: 60px; }
+ @media screen and (max-width: 768px) {
+   body { padding-top: 60px; }
+   margin-bottom: 10vh;
  }
 
-.field {
-  border: 5px;
+ .navbar-brand
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin:0 auto;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 10vh; /*высота футера будет зависеть от высоты экрана*/
+    background-color: #193441;
 }

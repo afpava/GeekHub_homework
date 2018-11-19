@@ -1,13 +1,14 @@
 class SessionsController < ApplicationController
       def new
-        @path_back ||= request.referer
+        session[:return_to] = request.referrer if request.referrer
       end
 
       def create
             user = User.find_by(email: params[:email])
            if user && user.authenticate(params[:password])
              session[:user_id] = user.id
-             redirect_to params[:referer], notice: 'Logged in!'
+             #redirect_to params[:referer], notice: 'Logged in!'
+             redirect_back(fallback_location: root_url)
            else
              flash.now.alert = 'Email or password is invalid'
              render :new

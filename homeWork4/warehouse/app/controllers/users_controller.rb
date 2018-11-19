@@ -1,10 +1,13 @@
 class UsersController < ApplicationController
-  wrap_parameters :user, include: [:name, :password, :password_confirmation]
+  #wrap_parameters :user, include: [:name, :password, :password_confirmation]
   before_action :user_params, only: [:edit]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
       def new
+        session[:return_to] = nil
+        session[:return_to] = request.referrer
         @user = User.new
+
       end
 
       def index
