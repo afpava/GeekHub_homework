@@ -1,9 +1,7 @@
 <div class="container">
   <%= link_to 'New store', new_store_path, :class=>'btn btn-default' if current_user %>
-  <%= link_to 'Manage Users', users_path, :class=>'btn btn-default' if current_user %>
 </div>
 <h1>Stores</h1>
-<p id="notice"><%= notice %></p>
 <div class="container">
 <% @stores.each do |store| %>
   <div class="left-panel">

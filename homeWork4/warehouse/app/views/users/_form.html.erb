@@ -10,22 +10,21 @@
     </div>
   <% end %>
 
-	<div class="field">
+  <div class="form-group">
 		<%= f.label :name %><br />
-		<%= f.text_field :name %>
-	</div>
-	<div class="field">
+		<%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
     <%= f.label :email %><br />
-    <%= f.email_field :email %>
+    <%= f.email_field :email, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
+    <%= f.password_field :password, class: "form-control" %>
+  <div class="form-group">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
   <%= hidden_field_tag :referer, (params[:referer] || request.env['HTTP_REFERER']) %>
-  <div class="actions"><%= f.submit "Sign Up" %></div>
+  <div class="actions"><%= f.submit "Sign Up", :class=>'btn btn-default pull-right' %></div>
 <% end %>

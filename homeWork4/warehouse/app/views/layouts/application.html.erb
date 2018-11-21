@@ -12,47 +12,50 @@
 <header>
   <nav>
     <div class="navbar navbar-default navbar-fixed-top">
-       <div class="container">
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-left">
-          <li> <%= link_to "Home", root_url %> </li>
-        </ul>
+      <div class="container">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li> <%= link_to "Home", root_url %> </li>
+            <li> <%= link_to 'Manage Users', users_path if current_user %> </li>
+          </ul>
 
 
-        <% if current_user %>
+          <% if current_user %>
 
-        <ul class="nav navbar-nav navbar-right">
-          <p class="navbar-text">   Logged in as <b> <%= current_user.name %></b>.</p>
-          <li> <%= link_to "Log Out", logout_path %> </li>
-        </ul>
-        <% else %>
-        <ul class="nav navbar-nav navbar-left">
-          <li> <%= link_to "Sign Up", signup_path %> </li>
-          <li> <%#= link_to "Log In", login_path %> </li>
-        </ul>
-        <div class="nav navbar-nav navbar-right">
-          <%= render 'sessions/nav_form' %>
-        </div>
+          <ul class="nav navbar-nav navbar-right">
+            <p class="navbar-text">   Logged in as <b> <%= current_user.name %></b>.</p>
+            <li> <%= link_to "Log Out", logout_path %> </li>
+          </ul>
+          <% else %>
+          <ul class="nav navbar-nav navbar-left">
+            <li> <%= link_to "Sign Up", signup_path %> </li>
+            <li> <%#= link_to "Log In", login_path %> </li>
+          </ul>
+          <div class="nav navbar-nav navbar-right">
+            <%= render 'sessions/nav_form' %>
+          </div>
           <% end %>
 
+        </div>
       </div>
     </div>
-  </div>
   </nav>
 </header>
-
 <body class='container'>
+  <% if notice %>
+  <p id="notice" class="alert alert-success"><%= notice %></p>
+  <% end %>
   <%= yield %>
 </body>
 
 <footer>
   <div class="navbar-fixed-bottom row-fluid">
-      <div class="navbar-inner">
-          <div class="container text-center">
-    -=pVa=- 2018
+    <div class="navbar-inner">
+      <div class="container text-center">
+        -=pVa=- 2018
+      </div>
+    </div>
   </div>
-</div>
-</div>
 </footer>
 
 </html>
