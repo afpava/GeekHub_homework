@@ -1,0 +1,23 @@
+<div class="container" style ="border-left: 10px;">
+  <%= link_to 'New country', new_country_path, :class=>'btn btn-light' %>
+</div>
+<h1>Countries</h1>
+<% @countries.each do |country| %>
+<div class="card" style="width: 30rem;" >
+  <div class="card-body">
+        				<h2><%= link_to country.name, country %></h2>
+            <div class="float-left col-md-4 col-xs-12 thumb-image">
+                <p><%= image_tag(country.image.url, alt: 'Image', :class =>'center-block img-responsive') if country.image? %></p>
+            </div>
+      </div>
+                <tr class="container-fluid float-right">
+
+                        <td><%= link_to 'Edit', edit_country_path(country), :class=>'btn btn-outline-secondary' %></td>
+                        <td><%= link_to 'Delete', country_path(country), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+                </tr>
+
+
+
+              </div>
+  <% end %>

@@ -1,0 +1,10 @@
+<h1>Editing Plane</h1>
+<div class="container">
+  <%= render partial: 'shared/form', :locals => { parent: @airport, pl_text: "City name", children: @plane} %>
+
+
+      <tr class="container-fluid pull-right">
+
+              <td><%= link_to 'Back', airport_path(@airport), :class=>'btn btn-outline-secondary', data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+</div>

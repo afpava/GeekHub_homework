@@ -1,0 +1,23 @@
+<% elements.each do |itm | %>
+    <div class="container-fluid">
+      <div class="col-sm-12">
+          <div class="card card-default">
+          <div class="card-heading">
+        <strong><%= link_to itm.name, itm %></strong> </br>
+          <%= "Destination:  #{itm.destination}" if defined? itm.destination %> </br>
+          <%= "Passport: #{itm.passport}" if defined? itm.passport %> </br>
+          <%= "Phone number: #{itm.phone_number}" if defined? itm.phone_number %> </br>
+
+
+          </div>
+          <div class="card-body">
+            <div class="col-md-12">
+            <div class="float-left col-md-4 col-xs-12 thumb-image">
+                <p><%= image_tag(itm.image.url, alt: 'Image', :class =>'center-block img-responsive') if itm.image? %></p>
+            </div>
+        </div>
+      </div><!-- /card-body -->
+    </div><!-- /card card-default -->
+  </div><!-- /col-sm-5 -->
+</div>
+  <%end%>

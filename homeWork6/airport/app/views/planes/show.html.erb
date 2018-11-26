@@ -1,0 +1,44 @@
+  <%#= link_to 'New category', categories_path(country_id: @country.id), method: :post, :class=>'btn btn-default' %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-2 white-text text-center text-md-left">
+        <div class="card">
+          <div class="card-heading">
+            <strong>Plane:</strong>
+            <%= @plane.name %> </br>
+            <strong>Destination:</strong>
+            <%= @plane.destination %>
+          </div>
+          <div class="card-body">
+            <div class="col-md-12">
+              <div class="float-left col-md-4 col-xs-12 thumb-image">
+                <p><%= image_tag(@plane.image.url, alt: 'Image', :class =>'center-block img-responsive') if @plane.image? %></p>
+              </div>
+            </div>
+            <tr>
+              <%# if current_user %>
+              <td><%= link_to 'Edit', edit_airport_plane_path(@plane.airport, @plane), :class=>'btn btn-light' %></td>
+              <td><%= link_to 'Delete', [@plane.airport, @plane], :class=>'btn btn-danger float-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <%# end%>
+            </tr>
+          </div><!-- /card-body -->
+        </div><!-- /card card-default -->
+        <td><%= link_to 'Back', airport_path(@plane.airport) , :class=>'btn btn-light' %></td>
+        <!-- /col-sm-5 -->
+      </div>
+
+<div class="col-md-8 col-xl-5 mb-4">
+
+<h3><%= 'Passenger:' if @plane.passengers.any? %></h3>
+<%= render partial: 'shared/list', :locals => { elements: @plane.passengers, edit_link: "edit_plane_passenger_path", country: "passenger"} %>
+
+  <%# if current_user %>
+
+    <h3>Create Passenger</h3>
+
+  <%= render partial: 'shared/form', :locals => { parent: @plane, pl_text: "Passenger", children: @plane.passengers.build } %>
+  <%# end %>
+
+    </div>
+  </div>
+</div>

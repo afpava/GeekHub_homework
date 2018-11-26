@@ -1,0 +1,5 @@
+  <h3> Create Pasenger:</h3>
+
+  <%= render partial: 'shared/form', :locals => { parent: @plane, pl_text: "Pasenger", children: @plane.pasengers.build } %>
+
+  <%= link_to 'Back', plane_path(@plane) , :class=>'btn btn-outline-secondary' %>

@@ -1,0 +1,56 @@
+<%= form_with model: [ parent, children ], local: true do |form| %>
+  <% if children.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(children.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+      <ul>
+      <% children.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="container">
+    <div class="col-sm-12">
+      <div class="card card-default">
+        <div class="card-heading">
+        <%#= form.label :name %>
+          <%= form.text_field :name , class: 'input-block-level', autofocus: true, placeholder: "#{pl_text} name" %>
+
+          <% if (pl_text == "Plane")  || (pl_text == "Ticket") %>
+          <div style="padding-top: 10px;">
+              <%= form.text_field :destination , class: 'input-block-level', autofocus: true, placeholder: "Destination" %>
+          </div>
+          <% end %>
+
+          <% if pl_text == "Passenger"%>
+          <div style="padding-top: 10px;">
+              <%= form.text_field :passport , class: 'input-block-level', autofocus: true, placeholder: "passport numer" %>
+          </div>
+
+          <div style="padding-top: 10px;">
+              <%= form.phone_field :phone_number , class: 'input-block-level', placeholder: "phone numer" %>
+          </div>
+          <% end %>
+
+        </div>
+
+      <div class="card-body">
+        <div class="col-md-9">
+            <%= form.label :image %>
+
+              <%=  form.file_field :image, accept: 'image/png,image/gif,image/jpeg'%>
+
+
+          </div>
+              <div class="container-fluid">
+                 <div class="actions">
+                      <%= form.submit  class: 'btn btn-outline-secondary' %>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<% end %>

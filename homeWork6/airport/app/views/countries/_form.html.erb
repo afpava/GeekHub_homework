@@ -1,0 +1,36 @@
+<%= form_with(model: @country, local: true) do |form| %>
+  <% if @country.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@country.errors.count, "error") %> prohibited this country from being saved:</h2>
+
+      <ul>
+      <% @country.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container">
+  <div class="col-sm-9">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%#= form.label :name %>
+          <%= form.text_field :name , class: 'input-block-level', autofocus: true, placeholder: 'Country name' %>
+      </div>
+
+      <div class="panel-body">
+        <div class="col-md-12">
+    <%= form.label :image %>
+    <%=  form.file_field :image  %>
+        </div>
+        <div class="container-fluid">
+           <div class="actions">
+                <%= form.submit  class: 'btn btn-default' %>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+</div>
+<% end %>

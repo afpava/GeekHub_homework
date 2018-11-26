@@ -1,0 +1,5 @@
+  <h3> Create Airport:</h3>
+
+  <%= render partial: 'shared/form', :locals => { parent: @airport, pl_text: "Plane", children: @airport.planes.build } %>
+
+  <%= link_to 'Back', airport_path(@airport) , :class=>'btn btn-outline-secondary' %>

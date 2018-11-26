@@ -1,0 +1,5 @@
+  <h3> Create Ticket:</h3>
+
+  <%= render partial: 'shared/form', :locals => { parent: @passenger, pl_text: "Ticket", children: @passenger.tickets.build } %>
+
+  <%= link_to 'Back', passenger_path(@passenger) , :class=>'btn btn-outline-secondary' %>
