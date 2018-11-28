@@ -1,3 +1,8 @@
 <h3>Editing Airport</h3>
 
-<%= render partial: 'shared/form', :locals => { parent: @city, pl_text: "Airport name", children: @city.airport} %>
+<%= render partial: 'shared/form', :locals => { parent: @city, pl_text: "Airport name", children: @airport} %>
+
+<tr class="container-fluid pull-right">
+
+        <td><%= link_to 'Back', airport_path(@airport), :class=>'btn btn-outline-secondary', data: { confirm: 'Are you sure?' } %></td>
+</tr>

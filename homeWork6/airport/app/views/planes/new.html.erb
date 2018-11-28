@@ -1,4 +1,14 @@
-  <h3> Create Airport:</h3>
+<% if @plane.errors.any? %>
+  <div id="error_explanation">
+        <ul>
+    <% @plane.errors.full_messages.each do |message| %>
+      <li class="alert alert-danger"><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <h3> Create Plane:</h3>
 
   <%= render partial: 'shared/form', :locals => { parent: @airport, pl_text: "Plane", children: @airport.planes.build } %>
 

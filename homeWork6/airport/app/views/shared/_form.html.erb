@@ -1,31 +1,30 @@
 <%= form_with model: [ parent, children ], local: true do |form| %>
-  <% if children.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(children.errors.count, "error") %> prohibited this category from being saved:</h2>
 
-      <ul>
-      <% children.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <% if children.image? %>
+    <div class="card-body">
+      <div class="col-md-12">
+        <div class="float-left col-md-4 col-xs-12 thumb-image">
+          <p><%= image_tag(children.image.url, height: '100', alt: 'Image', :class =>'d-block mx-auto img-responsive') %></p>
+        </div>
+      </div>
+    </div><!-- /card-body -->
+    <% end %>
   <div class="container">
     <div class="col-sm-12">
       <div class="card card-default">
         <div class="card-heading">
         <%#= form.label :name %>
-          <%= form.text_field :name , class: 'input-block-level', autofocus: true, placeholder: "#{pl_text} name" %>
+          <%= form.text_field :name , class: 'input-block-level', placeholder: "#{pl_text} name" %>
 
           <% if (pl_text == "Plane")  || (pl_text == "Ticket") %>
           <div style="padding-top: 10px;">
-              <%= form.text_field :destination , class: 'input-block-level', autofocus: true, placeholder: "Destination" %>
+              <%= form.text_field :destination , class: 'input-block-level', placeholder: "Destination" %>
           </div>
           <% end %>
 
           <% if pl_text == "Passenger"%>
           <div style="padding-top: 10px;">
-              <%= form.text_field :passport , class: 'input-block-level', autofocus: true, placeholder: "passport numer" %>
+              <%= form.text_field :passport , class: 'input-block-level', placeholder: "passport numer" %>
           </div>
 
           <div style="padding-top: 10px;">

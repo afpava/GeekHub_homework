@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-    # get 'signup' => 'users#new'
-    # get 'login' => 'sessions#new'
-    # get 'logout' => 'sessions#destroy'
+  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout'}
 
     resources :countries do
         resources :cities, only: [:index, :new, :create, :edit, :update, :destroy ]

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_22_105515) do
+ActiveRecord::Schema.define(version: 2018_11_27_094205) do
 
   create_table "airports", force: :cascade do |t|
     t.string "name"
@@ -18,6 +18,10 @@ ActiveRecord::Schema.define(version: 2018_11_22_105515) do
     t.integer "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["city_id"], name: "index_airports_on_city_id"
   end
 
@@ -27,6 +31,10 @@ ActiveRecord::Schema.define(version: 2018_11_22_105515) do
     t.integer "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["country_id"], name: "index_cities_on_country_id"
   end
 
@@ -35,6 +43,10 @@ ActiveRecord::Schema.define(version: 2018_11_22_105515) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "passengers", force: :cascade do |t|
@@ -45,6 +57,10 @@ ActiveRecord::Schema.define(version: 2018_11_22_105515) do
     t.integer "plane_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["plane_id"], name: "index_passengers_on_plane_id"
   end
 
@@ -55,6 +71,10 @@ ActiveRecord::Schema.define(version: 2018_11_22_105515) do
     t.integer "airport_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["airport_id"], name: "index_planes_on_airport_id"
   end
 
@@ -65,7 +85,23 @@ ActiveRecord::Schema.define(version: 2018_11_22_105515) do
     t.integer "passenger_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.bigint "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["passenger_id"], name: "index_tickets_on_passenger_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

@@ -1,5 +1,15 @@
+<% if @passenger.errors.any? %>
+  <div id="error_explanation">
+        <ul>
+    <% @passenger.errors.full_messages.each do |message| %>
+      <li class="alert alert-danger"><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
   <h3> Create Pasenger:</h3>
 
-  <%= render partial: 'shared/form', :locals => { parent: @plane, pl_text: "Pasenger", children: @plane.pasengers.build } %>
+  <%= render partial: 'shared/form', :locals => { parent: @plane, pl_text: "Passenger", children: @plane.passengers.build } %>
 
   <%= link_to 'Back', plane_path(@plane) , :class=>'btn btn-outline-secondary' %>

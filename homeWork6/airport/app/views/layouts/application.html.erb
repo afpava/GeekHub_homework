@@ -1,32 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Airport</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Airport</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<header class="fixed-top">
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-end">
+    <%= link_to "Home", root_url, :class=>'navbar-brand' %>
+    <div class="collapse navbar-collapse ml-auto flex-grow-0" id="navbarSupportedContent">
+      <ul class="navbar-nav text-right">
+        <% if user_signed_in? %>
+        <p class="navbar-nav navbar-text"> Logged in as <strong><%= current_user.email %></strong>. </p>
 
-  <header>
-    <nav>
-      <div class="navbar fixed-top navbar-light bg-light">
-        <div class="collapse navbar-collapse" id="navbarNav">
-                  <ul class="navbar-nav">
-              <li class="nav-item"> <%= link_to "Home", root_url, :class=>'nav-link' %> </li>
-              <li class="nav-item"> <%= link_to 'Manage Users', root_url, :class=>'nav-link'%> </li>
-            </ul>
-        </div>
-          </div>
-        </nav>
-  </header>
+        <li class="nav-item active">   <%= link_to 'Edit profile', edit_user_registration_path, :class => 'nav-link' %>  </li>
+        <li class="nav-item active">   <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-link'  %> </li>
+        <% else %>
+        <li class="nav-item active">   <%= link_to "Sign up", new_user_registration_path, :class => 'nav-link'  %>  </li>
+        <li class="nav-item active">   <%= link_to "Login", new_user_session_path, :class => 'nav-link'  %> </li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
 
-  <body>
-    <% if notice %>
-    <p id="notice" class="alert alert-success"><%= notice %></p>
-    <% end %>
-  
-    <%= yield %>
-  </body>
+
+</header>
+
+<body>
+  <% if notice %>
+  <p id="notice" class="alert alert-success"><%= notice %></p>
+  <% end %>
+
+  <% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+  <%= yield %>
+</body>
+<footer class="navbar-fixed-bottom row-fluid">
+      <div class="container text-center">
+        -=pVa=- 2018
+      </div>
+</footer>
 </html>

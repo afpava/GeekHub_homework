@@ -2,27 +2,10 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 mb-2 white-text text-center text-md-left">
-        <div class="card">
-          <div class="card-heading">
-            <strong>Airports:</strong>
-            <%= @airport.name %>
-          </div>
-          <div class="card-body">
-            <div class="col-md-12">
-              <div class="float-left col-md-4 col-xs-12 thumb-image">
-                <p><%= image_tag(@airport.image.url, alt: 'Image', :class =>'center-block img-responsive') if @airport.image? %></p>
-              </div>
-            </div>
-            <tr>
-              <%# if current_user %>
-              <td><%= link_to 'Edit', edit_city_airport_path(@airport.city, @airport), :class=>'btn btn-light' %></td>
-              <td><%= link_to 'Delete', [@airport.city, @airport], :class=>'btn btn-danger float-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <%# end%>
-            </tr>
-          </div><!-- /card-body -->
-        </div><!-- /card card-default -->
         <td><%= link_to 'Back', city_path(@city) , :class=>'btn btn-light' %></td>
-        <!-- /col-sm-5 -->
+        <%= render partial: 'shared/card', :locals => { parent: @city, pl_text: "Airport", children: @airport} %>
+
+        <%= render partial: 'shared/list', :locals => { elements: @city.airports, country: "airport"} %>
       </div>
 
 <div class="col-md-8 col-xl-5 mb-4">

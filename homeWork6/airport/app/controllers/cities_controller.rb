@@ -14,10 +14,11 @@ class CitiesController < ApplicationController
   def new
     @country = Country.find(params[:country_id])
     @city = @country.cities.build
-  end
+    end
 
   def edit
     #@city = City.find(params[:id]).country
+
   end
 
   # POST /stores
@@ -60,6 +61,7 @@ class CitiesController < ApplicationController
   def set_city
     @country = Country.find(params[:country_id])
     @city = @country.cities.find(params[:id])
+
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

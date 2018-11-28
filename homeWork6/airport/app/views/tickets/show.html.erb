@@ -2,28 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 mb-2 white-text text-center text-md-left">
-        <div class="card">
-          <div class="card-heading">
-            <strong>Ticket:</strong>
-            <%= @ticket.name %> </br>
-            <strong>Destination:</strong>
-            <%= @ticket.destination %>
-          </div>
-          <div class="card-body">
-            <div class="col-md-12">
-              <div class="float-left col-md-4 col-xs-12 thumb-image">
-                <p><%= image_tag(@ticket.image.url, alt: 'Image', :class =>'center-block img-responsive') if @ticket.image? %></p>
-              </div>
-            </div>
-            <tr>
-              <%# if current_user %>
-              <td><%= link_to 'Edit', edit_passenger_ticket_path(@ticket.passenger, @ticket), :class=>'btn btn-light' %></td>
-              <td><%= link_to 'Delete', [@ticket.passenger, @ticket], :class=>'btn btn-danger float-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <%# end%>
-            </tr>
-          </div><!-- /card-body -->
-        </div><!-- /card card-default -->
         <td><%= link_to 'Back', passenger_path(@ticket.passenger) , :class=>'btn btn-light' %></td>
+        <%= render partial: 'shared/card', :locals => { parent: @passenger, pl_text: "Ticket", children: @ticket} %>
+
+        <%= render partial: 'shared/list', :locals => { elements: @passenger.tickets, country: "ticket"} %>
+
         <!-- /col-sm-5 -->
       </div>
 

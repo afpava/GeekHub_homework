@@ -1,5 +1,16 @@
-  <h3> Create City:</h3>
+<% if @city.errors.any? %>
+  <div id="error_explanation">
+        <ul>
+    <% @city.errors.full_messages.each do |message| %>
+      <li class="alert alert-danger"><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
-<%= render partial: 'shared/form', :locals => { parent: @country, pl_text: "City", children: @country.cities.build } %>
+
+      <h3> Create City:</h3>
+
+<%= render partial: 'shared/form', obj: @city, :locals => { parent: @country, pl_text: "City", children: @country.cities.build } %>
 
 <%= link_to 'Back', country_path(@country) , :class=>'btn btn-outline-secondary' %>
