@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
+  attr_accessible :full_name, :age, :happy_birthday
+
   email_regex = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
   validates :email, :presence => true, :uniqueness => true, :format => email_regex
   validates :password, format: { with: /(?=.*?[0-9])(?=.*?[A-Za-z]).+/,
@@ -10,27 +12,28 @@ class User < ApplicationRecord
 
   has_secure_password
 
+
   enum role: [:standard, :admin]
   require 'carrierwave'
   require 'carrierwave/orm/activerecord'
   mount_uploader :avatar, ImageUploader
 
   after_initialize do
-  if self.new_record?
-    self.role ||= :standard
-  end
-end
+      if self.new_record?
+        self.role ||= :standard
+      end
+    end
 
-  def self.full_name
-    full_name = [@user.first_name, @user.last_name].join(" ")
-    full_name_reverse = [@user.first_name, @user.last_name].reverse.join(" ")
+  def full_name
+    [self.first_name, self.last_name].join(" ")
+    #self.full_name_reverse = [self.first_name, self.last_name].reverse.join(" ")
   end
 
   def age
-    return ((Time.zone.now - self.birth_date.to_time) / 1.year.seconds).floor
+    ((Time.zone.now - self.birth_date.to_time) / 1.year.seconds).floor
   end
 
-  def self.happy_birthday
+  def happy_birthday
 
   end
 end
