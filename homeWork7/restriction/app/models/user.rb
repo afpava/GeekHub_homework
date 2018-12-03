@@ -26,8 +26,8 @@ end
     full_name_reverse = [@user.first_name, @user.last_name].reverse.join(" ")
   end
 
-  def self.age
-    age = ((Time.zone.now - @user.birth_date.to_time) / 1.year.seconds).floor
+  def age
+    return ((Time.zone.now - self.birth_date.to_time) / 1.year.seconds).floor
   end
 
   def self.happy_birthday
