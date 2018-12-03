@@ -1,0 +1,37 @@
+<%#= link_to 'New category', categories_path(country_id: @country.id), method: :post, :class=>'btn btn-default' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 mb-2 white-text text-center text-md-left">
+      <div class="card">
+        <div class="card-heading">
+          <strong>User:</strong>
+          <%= @user.name %>
+        </div>
+        <div class="card-body">
+          <div class="col-md-12">
+            <div class="float-left col-md-4 col-xs-12 thumb-image">
+              <p><%= image_tag(@user.avatar.url, alt: 'Image', :class =>'d-block mx-auto img-responsive') if @user.avatar? %></p>
+            </div>
+          </div>
+        </div><!-- /card-body -->
+
+
+          <tr>
+            <td><%= link_to 'Edit', edit_user_path(@user), :class=>'btn btn-light' %></td>
+            <td><%= link_to 'Delete', user_path(@user), :class=>'btn btn-danger float-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+
+      </div><!-- /card card-default -->
+      <td><%= link_to 'Back', user_path , :class=>'btn btn-light' %></td>
+    </div>
+
+    <div class="col-md-8 col-xl-5 mb-4">
+
+      <h3><%= 'Posts:' if @user.posts.any? %></h3>
+      <%= render partial: 'shared/list', :locals => { elements: @country.cities, edit_link: "edit_country_city_path", country: "country"} %>
+      <h3>Create Post</h3>
+      <%= render partial: 'shared/form', :locals => { parent: @country, pl_text: "City", children: @country.cities.build } %>
+
+    </div>
+  </div>
+</div>

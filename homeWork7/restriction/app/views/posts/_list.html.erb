@@ -1,0 +1,13 @@
+<% elements.each do |itm | %>
+<div class="container-fluid">
+  <div class="col-sm-12">
+    <div class="card card-default">
+      <div class="card-heading">
+        <strong><%= itm.title %></strong> </br>
+      </div>
+      <%= itm.text %>
+      
+    </div><!-- /card card-default -->
+  </div><!-- /col-sm-5 -->
+</div>
+<%end%>

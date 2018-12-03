@@ -1,0 +1,57 @@
+Login, SignUp формы для создания пользователей и логина.
+Залогиненный пользователь может создавать и просматривать свои записи.
+которые будут на рендерится Home page - index.html.erb. Рендерить на index надо все записи текущего пользователя и форму для создания новых записей
+для записей должны быть CRUD действия.
+У каждого пользователя должен бытьсвой профайл в котором должны быть phone_number, avatar, etc.. при редактировании профайла текущие значения в БД дожны подставлятся в форму.
+
+Сделать валидации на password, email, login, etc..
+
+Admin:
+Создать пользователя admin с помощью db/seeds.rb
+User.create(email: '', )
+В БД может быть только один пользователь admin, tip: find_or_create_by
+Для админа должна быть такие же формы как и для пользователя,
+Админ может просматривать и делать CRUD для записей всех пользователей
+admin может просматривать профайлы пользователей и делать надо ними CRUD действия tip: activerecord enum
+
+добавить свои функции например: def fullname end
+
+
+Home page - с авторизацией, к юзеру форма с одним полем как поле CRUD has_mane, belongs_to validate:
+каждый пользователь может только получить к своим полям.
+каждый юзер имеет свой таск, у каждого пользователя свой профайл.ч, с валидацией,должно быть подставленно в форму значение если есть в базе данных
+Валидации на пароли и т.д.
+
+Admin
+админа делать через db/seeds.rb
+User.create(email:"")
+в базе только один пользователь может быть админом find_or_create_by
+Для админа форма такая же как и для формы
+
+rake db:seed
+Админ может удалять просматривать, редактировать
+manage users только для админа - в методе show - открывается профайл и потом админн может редактировать его
+activerecord enum
+
+def fullname
+end
+
+index.html - homepage
+
+
+
+def age
+((Time.zone.now - date_of_birth.to_time) / 1.year.seconds).floor
+
+(Date.today.year - date_of_birth.to_time.year)
+
+now = Time.zone.now.to_date
+now.year - date_of_birth.year - ((now.month > date_of_birth.month || (now.month == date_of_birth.month && now.day >= date_of_birth.day)) ? 0 : 1)
+
+
+end
+
+def full_name
+    full_name = [name, last_name].join(" ")
+    full_name_reverse = [first_name, last_name].reverse.join(" ")
+end

@@ -1,0 +1,68 @@
+
+<h1>Users</h1>
+
+<div class="container">
+  <% @users.each do |user| %>
+  <div class="left-panel">
+    <div class="col-xs-12 col-sm-6 col-lg-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="col-md-12">
+
+            <h2><%= user.nickname %></h2>
+            <div class="pull-left col-md-4 col-xs-12">
+              <p><%= user.email %></p>
+            </div>
+          </div>
+          <tr class="container-fluid pull-right">
+            <% if current_user && !(current_user.id == user.id)%>
+            <td><%#= link_to 'Edit', edit_user_path(user), :class=>'btn btn-default' %></td>
+            <td><%= link_to 'Delete', user_path(user), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <%end%>
+          </tr>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <% end %>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-2 white-text text-center text-md-left">
+        <div class="card">
+          <div class="card-heading">
+            <% if current_user %>
+            <strong>User:</strong>
+            <%= current_user.nickname %>
+          </div>
+          <div class="card-body">
+            <div class="col-md-12">
+              <div class="float-left col-md-4 col-xs-12 thumb-image">
+                <p><%= image_tag(current_user.avatar.url, alt: 'Image', :class =>'d-block mx-auto img-responsive') if current_user.avatar? %></p>
+              </div>
+            </div>
+          </div><!-- /card-body -->
+
+
+            <tr>
+              <td><%= link_to 'Edit', edit_user_path(@user), :class=>'btn btn-light' %></td>
+              <td><%= link_to 'Delete', user_path(current_user), :class=>'btn btn-danger float-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+
+        </div><!-- /card card-default -->
+        <td><%= link_to 'Back', root_path , :class=>'btn btn-light' %></td>
+      </div>
+
+      <div class="col-md-8 col-xl-5 mb-4">
+        <h3><%= 'Posts:' if current_user.posts.any? %></h3>
+        <%= render partial: 'posts/list', :locals => { elements: current_user.posts, post: "post"} %>
+        <h3>Create Post</h3>
+        <%= render partial: 'posts/form', :locals => { parent: @user, pl_text: "Post", children: @user.posts.build } %>
+<% end %>
+      </div>
+    </div>
+  </div>
+
+</div>
