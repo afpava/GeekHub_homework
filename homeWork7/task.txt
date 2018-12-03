@@ -25,6 +25,7 @@ Home page - с авторизацией, к юзеру форма с одним 
 Admin
 админа делать через db/seeds.rb
 User.create(email:"")
+User.new(email:"test@test.com", nickname:"Lest", first_name:"Test", last_name:"User", birth_date:"03-02-2003", role:"1", password:"123test")
 в базе только один пользователь может быть админом find_or_create_by
 Для админа форма такая же как и для формы
 
