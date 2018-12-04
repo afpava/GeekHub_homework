@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
-  attr_accessible :full_name, :age, :happy_birthday
+  attr_accessor :full_name, :age, :happy_birthday
 
   email_regex = /\A[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\z/i
   validates :email, :presence => true, :uniqueness => true, :format => email_regex
@@ -34,6 +34,11 @@ class User < ApplicationRecord
   end
 
   def happy_birthday
-
+        year = Date.today.year
+        mmdd = self.birth_date.to_time.strftime('%m%d')
+        year += 1 if mmdd < Date.today.strftime('%m%d')
+        mmdd = '0301' if mmdd == '0229' && !Date.parse("#{year}0101").leap?
+        #return Date.parse("#{year}#{mmdd}")
+        puts 1
   end
 end

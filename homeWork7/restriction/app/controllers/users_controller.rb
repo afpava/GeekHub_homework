@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
   #before_action :user_params, only: [:edit]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :authorize_admin, only: [:show, :edit]
       def new
         @user = User.new
       end
@@ -16,10 +16,16 @@ class UsersController < ApplicationController
         #   redirect_to signup_path
         # end
       end
+
+      def show
+        @users = User.all
+      end
+
       def update
         redirect_to root_path
       end
       def edit
+          @user = User.find(params[:id])
       #  binding.pry
       end
       def update
@@ -41,7 +47,7 @@ class UsersController < ApplicationController
             if @user.save
           session[:user_id] = @user.id
           #redirect_to root_url, notice: "Thank you for signing up!"
-          redirect_to params[:referer] , notice: "Thank you for signing up!"
+          redirect_to root_path , notice: "Thank you for signing up!"
         else
           render "new"
         end
@@ -51,6 +57,12 @@ class UsersController < ApplicationController
 
       def set_user
         @user = User.find(params[:id])
+      end
+
+      def authorize_admin
+        redirect_to root_path unless current_user.admin? || (edit_user_path == edit_user_path(current_user))
+      #  redirect_to root_path unless current_user.admin?
+        #redirects to previous page
       end
 
       def user_params

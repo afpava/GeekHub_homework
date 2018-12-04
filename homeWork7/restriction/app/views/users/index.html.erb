@@ -1,40 +1,23 @@
-<% if current_user.admit? %>
-<h1>Users</h1>
+<% if current_user.admin? %>
+<center><h1>Users</h1></center>
+
 
 <div class="container">
-  <% @users.each do |user| %>
+
   <div class="left-panel">
     <div class="col-xs-12 col-sm-6 col-lg-8">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="col-md-12">
-
-            <h2><%= user.nickname %></h2>
-            <div class="pull-left col-md-4 col-xs-12">
-              <p><%= user.email %></p>
-            </div>
-          </div>
-          <tr class="container-fluid pull-right">
-            <% if current_user && !(current_user.id == user.id)%>
-            <td><%#= link_to 'Edit', edit_user_path(user), :class=>'btn btn-default' %></td>
-            <td><%= link_to 'Delete', user_path(user), :class=>'btn btn-danger pull-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <%end%>
-          </tr>
-
-        </div>
-      </div>
-
+      <%= render partial: 'list', :locals => { elements: @users} %>
     </div>
   </div>
+
   <% end %>
-<% end %>
   <div class="container">
     <div class="row">
       <div class="col-md-4 mb-2 white-text text-center text-md-left">
         <div class="card">
           <div class="card-heading">
-            <% if current_user %>
           </div>
+
           <div class="card-body">
             <div class="col-md-12">
               <div class="float-center thumb-image">
@@ -44,36 +27,34 @@
             <strong>User:</strong>
 
             <%= current_user.nickname %>
-            </br>
-            <%= content_tag(:strong, "Nickname: ") + current_user.nickname + tag(:br) if current_user.nickname? %>
-            <%= content_tag(:strong, "First Name: ") + current_user.first_name + tag(:br) if current_user.first_name? %>
-            <%= content_tag(:strong, "Last Name: ") + current_user.last_name + tag(:br) if current_user.last_name? %>
-            <%= content_tag(:strong, "email: ") + current_user.email + tag(:br) if current_user.email? %>
-            <%= content_tag(:strong, "Age: ") + current_user.age + tag(:br) if current_user.birth_date? %>
-            <%= content_tag(:strong, "Gender: ") + current_user.gender + tag(:br) if current_user.gender? %>
-            <%= content_tag(:strong, "Phone Number: ") + current_user.phone_number + tag(:br) if current_user.phone_number? %>
-            <%= content_tag(:strong, "Country: ") + current_user.country + tag(:br) if current_user.country? %>
-            <%= content_tag(:strong, "City: ") + current_user.city + tag(:br) if current_user.city? %>
-          </div><!-- /card-body -->
+          </br>
+          <%= content_tag(:strong, "Nickname: ") + current_user.nickname + tag(:br) if current_user.nickname? %>
+          <%= content_tag(:strong, "First Name: ") + current_user.first_name + tag(:br) if current_user.first_name? %>
+          <%= content_tag(:strong, "Last Name: ") + current_user.last_name + tag(:br) if current_user.last_name? %>
+          <%= content_tag(:strong, "email: ") + current_user.email + tag(:br) if current_user.email? %>
+          <%= content_tag(:strong, "Age: ") + current_user.age.to_s + tag(:br) if current_user.birth_date? %>
+          <%= content_tag(:strong, "Gender: ") + current_user.gender + tag(:br) if current_user.gender? %>
+          <%= content_tag(:strong, "Phone Number: ") + current_user.phone_number + tag(:br) if current_user.phone_number? %>
+          <%= content_tag(:strong, "Country: ") + current_user.country + tag(:br) if current_user.country? %>
+          <%= content_tag(:strong, "City: ") + current_user.city + tag(:br) if current_user.city? %>
+        </div><!-- /card-body -->
 
 
-            <tr>
-              <td><%= link_to 'Edit', edit_user_path(@user), :class=>'btn btn-light' %></td>
-              <td><%= link_to 'Delete', user_path(current_user), :class=>'btn btn-danger float-right', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
+        <tr>
+          <td><%= link_to 'Edit', edit_user_path(@user), :class=>'btn btn-light' %></td>
+        </tr>
 
-        </div><!-- /card card-default -->
-        <td><%= link_to 'Back', root_path , :class=>'btn btn-light' %></td>
-      </div>
+      </div><!-- /card card-default -->
 
-      <div class="col-md-8 col-xl-5 mb-4">
-        <h3><%= 'Posts:' if current_user.posts.any? %></h3>
-        <%= render partial: 'posts/list', :locals => { elements: current_user.posts, post: "post"} %>
-        <h3>Create Post</h3>
-        <%= render partial: 'posts/form', :locals => { parent: @user, pl_text: "Post", children: @user.posts.build } %>
-<% end %>
-      </div>
+    </div>
+
+    <div class="col-md-8 col-xl-5 mb-4">
+      <h3><%= 'Posts:' if current_user.posts.any? %></h3>
+      <%= render partial: 'posts/list', :locals => { elements: current_user.posts, parent: current_user, post: "post"} %>
+      <h3>Create Post</h3>
+      <%= render partial: 'posts/form', :locals => { parent: @user, pl_text: "Post", children: @user.posts.build } %>
     </div>
   </div>
+</div>
 
 </div>

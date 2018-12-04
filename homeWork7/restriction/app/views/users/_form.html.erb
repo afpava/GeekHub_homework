@@ -52,7 +52,8 @@
     <%= f.password_field :password_confirmation, class: "form-control" %>
   </div>
 <% if @user.created_at %>
-  <div class="actions"><%= f.submit "Update", :class=>'btn btn-default pull-right' %></div>
+  <div class="actions"><%= link_to 'Delete User', user_path(current_user), :class=>'btn btn-danger float-lest', method: :delete, data: { confirm: 'Do you want to delete User account. Are you sure?' } %>
+  <tr class="actions"><%= f.submit "Update", :class=>'btn btn-default float-right' %></tr></div>
 <% else %>
 <div class="actions"><%= f.submit "Sign Up", :class=>'btn btn-default pull-right' %></div>
 <% end %>
