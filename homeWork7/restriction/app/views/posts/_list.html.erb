@@ -4,6 +4,7 @@
     <div class="card card-default">
       <div class="card-heading">
         <strong><%= itm.title %></strong> </br>
+        <%= itm.created_at.to_date  %>
       </div>
       <%= itm.text %>
       <td><%= link_to 'Edit', edit_polymorphic_path([parent, itm]), :class=>'btn btn-light' %></td>

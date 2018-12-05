@@ -37,6 +37,7 @@
           <%= content_tag(:strong, "Phone Number: ") + current_user.phone_number + tag(:br) if current_user.phone_number? %>
           <%= content_tag(:strong, "Country: ") + current_user.country + tag(:br) if current_user.country? %>
           <%= content_tag(:strong, "City: ") + current_user.city + tag(:br) if current_user.city? %>
+          <%= content_tag(:strong, "Posts: ") + current_user.total_posts.to_s + tag(:br) if current_user.total_posts > 0 %>
         </div><!-- /card-body -->
 
 

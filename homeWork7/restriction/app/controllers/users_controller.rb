@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authorize_admin, only: [:show, :edit]
       def new
-        @user = User.new
+          if current_user
+            redirect_to root_path, alert: 'You are signed in, logout first.'
+          else
+            @user = User.new
+          end
       end
 
       def index
@@ -59,11 +63,6 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
       end
 
-      def authorize_admin
-        redirect_to root_path unless current_user.admin? || (edit_user_path == edit_user_path(current_user))
-      #  redirect_to root_path unless current_user.admin?
-        #redirects to previous page
-      end
 
       def user_params
           params.require(:user).permit(:nickname, :last_name, :first_name, :birth_date, :gender, :phone_number, :country, :city, :avatar ,:email, :password, :password_confirmation)
