@@ -56,3 +56,7 @@ def full_name
     full_name = [name, last_name].join(" ")
     full_name_reverse = [first_name, last_name].reverse.join(" ")
 end
+
+
+query users who have bitrhday today from DB SQLight
+u = User.where("strftime('%m%d', birth_date) = ?", Date.today.strftime('%m%d'))

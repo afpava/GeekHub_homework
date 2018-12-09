@@ -4,6 +4,4 @@ class Post < ApplicationRecord
     message: "Title exists!" }
   validates :text, presence: true
 
-
-  
 end

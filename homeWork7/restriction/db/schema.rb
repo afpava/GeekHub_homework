@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_02_232631) do
+ActiveRecord::Schema.define(version: 2018_12_08_211403) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2018_12_02_232631) do
     t.string "avatar"
     t.string "last_name"
     t.string "first_name"
-    t.string "birth_date"
+    t.date "birth_date"
     t.string "gender"
     t.string "phone_number"
     t.string "country"

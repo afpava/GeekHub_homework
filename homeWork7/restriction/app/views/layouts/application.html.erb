@@ -23,6 +23,19 @@
           <li class="nav-item active">   <%= link_to "Sign up", signup_path, :class => 'nav-link'  %>  </li>
           <li class="nav-item active">   <%= link_to "Login", login_path, :class => 'nav-link'  %> </li>
           <% end %>
+          <% if current_user&&current_user.admin? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            <%= @first_birthday ? content_tag(:strong, @first_birthday.nickname) + ' today ' + @first_birthday.age.to_s : "Birthdays this month" %>
+            </a>
+            <div class="dropdown-menu">
+              <% @birthdays.each do |user| %>
+              <div class="dropdown-divider"></div>
+              <p class="dropdown-item dropdown-item-text"><%= user.nickname + " " + user.birth_date.to_s %></p>
+              <% end %>
+
+            </div>
+            <% end %>
         </ul>
       </div>
     </nav>
@@ -41,6 +54,7 @@
     <%= yield %>
   </body>
   <footer class="navbar-fixed-bottom row-fluid">
+
         <div class="container text-center">
           -=pVa=- 2018
         </div>
