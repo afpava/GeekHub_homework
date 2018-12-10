@@ -4,24 +4,31 @@ RSpec.describe Post, type: :model do
 
   describe "when Post.new is called" do
     let(:user) { User.create(email: 'test@test.com', nickname: 'Test', first_name: 'First', last_name: 'Super', birth_date: "01-01-1900", password:"123test" ) }
+    let(:user1) { User.create(email: 'test1@test.com', nickname: 'Test1', first_name: 'First1', last_name: 'Super1', birth_date: "01-01-1900", password:"123test" ) }
+
   #otm
   it "should be ok with an associated post" do
     post = user.posts.create(title:"test",text:"test")
     expect(post).to be_valid
   end
 
-  it "should have an associated post" do
-    user.should have_at_least(1).error_on(:posts)
+  it "validation Title shouldn't be blank" do
+    post = user.posts.create(title:"",text:"test")
+    expect(post).not_to be_valid
   end
 
-  #mtm
-  it "should be ok with at least one associated user" do
-    user.posts.build
-    user.should have(:no).errors_on(:posts)
+  it "validation Text shouldn't be blank" do
+    post = user.posts.create(title:"test",text:"")
+    expect(post).not_to be_valid
   end
 
-  it "should have at least one associated user" do
-    user.should have_at_least(1).error_on(:posts)
+  it "validation Title should be unique only for exect User" do
+    post = user.posts.create(title:"test",text:"test")
+    post1 = user.posts.create(title:"test",text:"test")
+    post2 = user1.posts.create(title:"test",text:"test")
+    expect(post).to be_valid
+    expect(post1).not_to be_valid
+    expect(post2).to be_valid
   end
 
 end
