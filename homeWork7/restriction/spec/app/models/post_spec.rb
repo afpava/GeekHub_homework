@@ -14,12 +14,12 @@ RSpec.describe Post, type: :model do
 
   it "validation Title shouldn't be blank" do
     post = user.posts.create(title:"",text:"test")
-    expect(post).not_to be_valid
+    expect(post.errors.messages[:title]).to include("can't be blank")
   end
 
   it "validation Text shouldn't be blank" do
     post = user.posts.create(title:"test",text:"")
-    expect(post).not_to be_valid
+    expect(post.errors.messages[:text]).to include("can't be blank")
   end
 
   it "validation Title should be unique only for exect User" do
@@ -27,7 +27,7 @@ RSpec.describe Post, type: :model do
     post1 = user.posts.create(title:"test",text:"test")
     post2 = user1.posts.create(title:"test",text:"test")
     expect(post).to be_valid
-    expect(post1).not_to be_valid
+    expect(post1.errors.messages[:title]).to include("Title exists!")
     expect(post2).to be_valid
   end
 
