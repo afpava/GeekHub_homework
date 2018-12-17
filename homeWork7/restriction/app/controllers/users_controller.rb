@@ -17,6 +17,7 @@ class UsersController < ApplicationController
         @user = current_user
         @birthdays = User.birthdays_this_month.sort_by{|p| p.birth_date.day}
         @first_birthday = User.birthdays_today.first
+        #binding.pry
         # if request.referrer == signup_url
         #   redirect_to signup_path
         # end
@@ -24,7 +25,7 @@ class UsersController < ApplicationController
 
       def show
         @users = User.all
-        @birthdays = User.birthdays_this_month
+        @birthdays = User.birthdays_this_month.sort_by{|p| p.birth_date.day}
       end
 
       def update
@@ -32,7 +33,7 @@ class UsersController < ApplicationController
       end
       def edit
           @user = User.find(params[:id])
-          @birthdays = User.birthdays_this_month
+          @birthdays = User.birthdays_this_month.sort_by{|p| p.birth_date.day}
       #  binding.pry
       end
       def update
