@@ -53,6 +53,7 @@ class UsersController < ApplicationController
           #session[:return_to] = nil
           @user = User.new(user_params)
             if @user.save
+              binding.pry
           session[:user_id] = @user.id
           #redirect_to root_url, notice: "Thank you for signing up!"
           redirect_to root_path , notice: "Thank you for signing up!"

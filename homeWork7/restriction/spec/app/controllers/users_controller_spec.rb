@@ -147,16 +147,23 @@ RSpec.describe UsersController, type: :controller do
   end #GET show
 
   describe "POST users#create" do
-    before do
+      let(:user_params) { user_params = { nickname: "username#{rand(1000)}",
+                                       email: "user#{rand(1000)}@factory.com",
+                                       password: "Password1",
+                                       password_confirmation: "Password1",
+
+                                           } }
+   before do
+       person1
+       user_params
       #allow(controller).to receive(:current_user) {user}
       #user
-      get :create, params: { email: 'test1@test.com', nickname: 'Test1', first_name: 'First', last_name: 'Super', birth_date: '01-01-1954', password:'123test' }
+    #  post :create, params: { email: 'test1@test.com', nickname: 'Test1', first_name: 'First', last_name: 'Super', birth_date: '01-01-1954', password:'123test' }
     end
-  it 'should create a new user' do
-      visit new_users_path
-    fill_in 'story_title', with: 'Ruby on Rails'
-    fill_in 'story_content', with: 'Text about Ruby on Rails'
-    expect { click_button 'Create' }.to change(User, :count).by(1)
+  it 'should create a new user'   do
+    post :create, params: {user: user_params}
+      #expect(assigns(:user)).to change({User, :count}).by(1)
+    expect { post(:create, params: { user: user_params }) }.to change(User, :count).by(1)
   end
 end #POST #create
 
