@@ -28,15 +28,13 @@ class UsersController < ApplicationController
         @birthdays = User.birthdays_this_month.sort_by{|p| p.birth_date.day}
       end
 
-      def update
-        redirect_to root_path
-      end
       def edit
           @user = User.find(params[:id])
           @birthdays = User.birthdays_this_month.sort_by{|p| p.birth_date.day}
-      #  binding.pry
       end
+
       def update
+        # binding.pry
         if @user.update(user_params)
           redirect_to root_path, notice: 'Profile was successfully updated.'
         else
@@ -45,6 +43,7 @@ class UsersController < ApplicationController
       end
 
       def destroy
+         # binding.pry
         @user.destroy
          redirect_to root_url, notice: 'user was successfully destroyed.'
       end
@@ -53,10 +52,10 @@ class UsersController < ApplicationController
           #session[:return_to] = nil
           @user = User.new(user_params)
             if @user.save
-              binding.pry
           session[:user_id] = @user.id
           #redirect_to root_url, notice: "Thank you for signing up!"
           redirect_to root_path , notice: "Thank you for signing up!"
+                #binding.pry
         else
           render "new"
         end
