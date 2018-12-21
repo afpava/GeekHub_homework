@@ -13,7 +13,7 @@ RSpec.describe PostsController, type: :controller do
           allow(controller).to receive(:current_user) {user}
           user
           post = user.posts.create(post_params)
-          get :index
+          get :index params{user_id: user.id, post_id: post.id}
         end
 
         it{ expect(assigns(:post)).to include(user) }
