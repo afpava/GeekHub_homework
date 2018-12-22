@@ -13,16 +13,19 @@ RSpec.describe PostsController, type: :controller do
           allow(controller).to receive(:current_user) {user}
           user
           post = user.posts.create(post_params)
-          get :index params{user_id: user.id, post_id: post.id}
+          get :index, params: {user_id: user.id}
         end
+        it{
+          #assert_response :success
 
-        it{ expect(assigns(:post)).to include(user) }
+          expect(assigns(:posts)).to include(post)
+        }
     end
 
     context 'should redirect to sign_in if not authorized' do
       before do
         user
-        get :index
+        get :index, params: {user_id: user.id}
       end
 
       it{ expect(response).to render_template('sessions/new.html.erb') }
