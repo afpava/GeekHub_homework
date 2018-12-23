@@ -7,30 +7,55 @@ RSpec.describe PostsController, type: :controller do
       let(:post_params){post_params = {title:"This is test#{rand(1000)}", text:'Test message'}}
   #before { allow(controller).to receive(:current_user) {user} }
 
-  describe 'GET index' do
-    context 'should return all Posts' do
+  # describe 'GET index' do
+  #   context 'should return all Posts' do
+  #       before do
+  #         allow(controller).to receive(:current_user) {user}
+  #         user
+  #         post = user.posts.create(post_params)
+  #         get :index, params: {user_id: user.id}
+  #       end
+  #       it{
+  #         #assert_response :success
+  #
+  #         expect(assigns(:posts)).to include(post)
+  #       }
+  #   end
+  #
+  #   context 'should redirect to sign_in if not authorized' do
+  #     before do
+  #       user
+  #       get :index, params: {user_id: user.id}
+  #     end
+  #
+  #     it{ expect(response).to render_template('sessions/new.html.erb') }
+  #   end
+  #
+  # end #GET index
+
+
+    describe 'GET #new' do
+
+      context 'assigns a new Post to @user ' do
         before do
-          allow(controller).to receive(:current_user) {user}
-          user
-          post = user.posts.create(post_params)
-          get :index, params: {user_id: user.id}
+          get :new, params: {user_id: user.id}
         end
-        it{
-          #assert_response :success
 
-          expect(assigns(:posts)).to include(post)
-        }
-    end
-
-    context 'should redirect to sign_in if not authorized' do
-      before do
-        user
-        get :index, params: {user_id: user.id}
+        it 'if no current_user' do
+          expect(assigns(:post)).to be_a_new(Post)
+        end
       end
 
-      it{ expect(response).to render_template('sessions/new.html.erb') }
-    end
+      # context 'should redirect to root_path' do
+      #   before do
+      #     allow(controller).to receive(:current_user) {user}
+      #     user
+      #     get :new, params: {user_id: user.id}
+      #   end
+      #
+      #   it{ expect(response).to redirect_to(root_path)}
+      # end
 
-  end #GET index
+    end #GET #new
 
 end #Rspec

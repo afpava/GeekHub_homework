@@ -2,14 +2,15 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:destroy, :edit, :update]
   #before_action :authorize, only: [:edit, :update, :destroy]
   before_action :authorize_admin, only: [:show, :edit]
-  def index
-    @posts = Post.all
-  end
+  #before_action :set_birthdays, only: [:edit, :update]
+  # def index
+  #   @posts = Post.all
+  # end
 
-  def show
-    @post = Post.find(params[:id])
-    @user=@post.user
-  end
+  # def show
+  #   @post = Post.find(params[:id])
+  #   @user=@post.user
+  # end
 
   def new
     @user = User.find(params[:user_id])
@@ -17,6 +18,7 @@ class PostsController < ApplicationController
     end
 
   def edit
+    @birthdays = User.birthdays_this_month.sort_by{|p| p.birth_date.day}
 
   end
 
@@ -58,6 +60,10 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @post = @user.posts.find(params[:id])
 
+  end
+
+  def set_birthdays
+      @birthdays = User.birthdays_this_month.sort_by{|p| p.birth_date.day}
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
