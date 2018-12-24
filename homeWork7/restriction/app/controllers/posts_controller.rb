@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:destroy, :edit, :update]
   #before_action :authorize, only: [:edit, :update, :destroy]
-  before_action :authorize_admin, only: [:show, :edit]
+  before_action :authorize_admin, only: [:update, :edit]
   #before_action :set_birthdays, only: [:edit, :update]
   # def index
   #   @posts = Post.all
@@ -12,14 +12,13 @@ class PostsController < ApplicationController
   #   @user=@post.user
   # end
 
-  def new
-    @user = User.find(params[:user_id])
-    @post = @user.posts.build
-    end
+  # def new
+  #   @user = User.find(params[:user_id])
+  #   @post = @user.posts.build
+  #   end
 
   def edit
     @birthdays = User.birthdays_this_month.sort_by{|p| p.birth_date.day}
-
   end
 
   def create
@@ -30,7 +29,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to root_path, notice: 'Post was successfully created.'
     else
-      render :new
+      redirect_to root_path, alert: 'Post was not created. Title and text could not be blank'
     end
   end
 
@@ -60,10 +59,6 @@ class PostsController < ApplicationController
     @user = User.find(params[:user_id])
     @post = @user.posts.find(params[:id])
 
-  end
-
-  def set_birthdays
-      @birthdays = User.birthdays_this_month.sort_by{|p| p.birth_date.day}
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

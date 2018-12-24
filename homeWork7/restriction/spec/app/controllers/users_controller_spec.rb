@@ -145,6 +145,7 @@ RSpec.describe UsersController, type: :controller do
      end
 
      context 'should redirect to root_path if no admin or other user.id' do
+      let(:post1) {user.posts.create(title:"This is test#{rand(1000)}", text:'Test message')}
        before do
          allow(controller).to receive(:current_user) {person1}
          user
@@ -152,9 +153,9 @@ RSpec.describe UsersController, type: :controller do
          person2
        end
        it do
-         get :show, params: { id: person2.id, user_id: person2.id }
+         get :show, params: { id: person2.id }
         expect(flash[:alert]).to eq 'You must be admin to view another user profile.'
-         #expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -188,7 +189,7 @@ RSpec.describe UsersController, type: :controller do
           user
           person1
           person2
-          get :show, params: { id: user.id }
+          get :edit, params: { id: user.id }
         end
 
         it '2 users must have birthday this month one should not' do
@@ -202,6 +203,22 @@ RSpec.describe UsersController, type: :controller do
         end
 
      end
+
+     context 'should redirect to root_path if no admin or other user.id' do
+      let(:post1) {user.posts.create(title:"This is test#{rand(1000)}", text:'Test message')}
+       before do
+         allow(controller).to receive(:current_user) {person1}
+         user
+         person1
+         person2
+       end
+       it do
+         get :show, params: { id: person2.id }
+        expect(flash[:alert]).to eq 'You must be admin to view another user profile.'
+        expect(response).to redirect_to(root_path)
+      end
+
+    end
 
   end #GET edit
 

@@ -7,55 +7,145 @@ RSpec.describe PostsController, type: :controller do
       let(:post_params){post_params = {title:"This is test#{rand(1000)}", text:'Test message'}}
   #before { allow(controller).to receive(:current_user) {user} }
 
-  # describe 'GET index' do
-  #   context 'should return all Posts' do
-  #       before do
-  #         allow(controller).to receive(:current_user) {user}
-  #         user
-  #         post = user.posts.create(post_params)
-  #         get :index, params: {user_id: user.id}
-  #       end
-  #       it{
-  #         #assert_response :success
-  #
-  #         expect(assigns(:posts)).to include(post)
-  #       }
-  #   end
-  #
-  #   context 'should redirect to sign_in if not authorized' do
-  #     before do
-  #       user
-  #       get :index, params: {user_id: user.id}
-  #     end
-  #
-  #     it{ expect(response).to render_template('sessions/new.html.erb') }
-  #   end
-  #
-  # end #GET index
+  describe 'GET #edit' do
+    let(:post1) {user.posts.create(post_params)}
 
-
-    describe 'GET #new' do
-
-      context 'assigns a new Post to @user ' do
+    context 'should return exect user' do
+      # let(:post_params){post_params = {text:'Test'}}
         before do
-          get :new, params: {user_id: user.id}
+          allow(controller).to receive(:current_user) {user}
+          person1
+          post1
+
+          get :edit, params: {user_id: post1.user.id, id: person1.id}
         end
 
-        it 'if no current_user' do
-          expect(assigns(:post)).to be_a_new(Post)
+        it{ expect(assigns(:post)).to eq (post1) }
+    end
+
+    context 'should return user if user has a birthday this month' do
+
+        before do
+          travel_to(Date.parse('2011-09-09'))
+          allow(controller).to receive(:current_user) {user}
+          user
+          person1
+          person2
+          get :edit, params: { user_id: post1.user.id ,id: post1.id }
         end
+
+        it '2 users must have birthday this month one should not' do
+          expect(assigns(:birthdays)).to include(person2)
+          expect(assigns(:birthdays)).to include(person1)
+          expect(assigns(:birthdays)).not_to include(user)
+        end
+
+        it 'should return sorted by birth_date' do
+          expect(assigns(:birthdays).first).to eq person2
+        end
+
+     end
+
+  end #GET edit
+
+
+  describe 'POST posts#create' do
+    context 'should create a new post' do
+      before do
+        user
+        post_params
       end
 
-      # context 'should redirect to root_path' do
-      #   before do
-      #     allow(controller).to receive(:current_user) {user}
-      #     user
-      #     get :new, params: {user_id: user.id}
-      #   end
-      #
-      #   it{ expect(response).to redirect_to(root_path)}
-      # end
+      it { expect { post(:create, params: { user_id: user.id, post: post_params }) }.to change(Post, :count).by(1)}
+      it do
+        post(:create, params: {user_id: user.id, post: post_params })
+        expect(response).to redirect_to(root_path)
+      end
 
-    end #GET #new
+      it do
+        post(:create, params: {user_id: user.id, post: post_params })
+        expect(flash[:notice]).to eq 'Post was successfully created.'
+      end
+
+    end
+
+    context 'should render new template if params are wrong' do
+      let(:post_params){post_params = {title: nil, text:'Test message'}}
+
+      before do
+        user
+        post_params
+      end
+
+      it do
+        post(:create, params: {user_id: user.id, post: post_params })
+        expect(flash[:alert]).to eq 'Post was not created. Title and text could not be blank'
+
+      end
+
+    end
+  end #POST #create
+
+
+  describe 'PATCH#update' do
+    let(:post1) {person1.posts.create(post_params)}
+
+      before do
+        allow(controller).to receive(:current_user) {user}
+        person1
+        user
+        post1
+      end
+
+
+      context 'as a user' do
+        subject { patch :update, params: { user_id: person1.id, id: post1.id, post_params: post_params } }
+
+        context 'with valid params' do
+          let(:post_params) {post_params = { user_id: person1.id, text: 'Foo' } }
+
+          it 'updates requested record' do
+            subject
+            expect(post1.reload.text).to eq(user_params[:text])
+            expect(response).to redirect_to(root_path)
+          end
+
+        end
+
+        context 'with invalid params' do
+          let(:user_params) { user_params = {email: nil } }
+          it do
+             subject
+             expect(response).to render_template(:edit)
+           end
+        end
+
+      end
+
+    end #PUT update
+
+  describe 'Delete #destroy' do
+  # describe 'DELETE destroy' do
+    let(:post1) {person1.posts.create(post_params)}
+    before do
+      allow(controller).to receive(:current_user) {person1}
+      person1
+      post1
+
+    end
+
+      context 'when params are valid' do
+
+        it do
+          expect{ delete :destroy, params: {user_id: post1.user.id, id: post1.id} }.to change(Post, :count).by(-1)
+        end
+        it do
+          delete :destroy, params: {user_id: post1.user.id, id: person1.id}
+          expect(flash[:notice]).to eq 'Post was successfully destroyed.'
+        end
+
+      end
+
+     end # Delete #destroy
 
 end #Rspec

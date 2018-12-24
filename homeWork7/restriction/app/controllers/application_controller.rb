@@ -12,7 +12,7 @@ def require_login
 end
 
 def authorize_admin
-  redirect_to root_path, alert: 'You must be admin to view another user profile.' unless current_user.admin? || (edit_user_path == edit_user_path(current_user)||edit_user_post_path == edit_user_post_path(current_user))
+  redirect_to root_path, alert: 'You must be admin to view another user profile.' unless current_user.admin? || @user.id == current_user.id ||@post&.user&.id == current_user.id
   #redirect_to root_path unless current_user.admin?
   #redirects to previous page
 end
