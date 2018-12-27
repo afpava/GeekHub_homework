@@ -104,7 +104,7 @@ end
     let(:person2) {User.create(email:'rd@com.com',password:'123test',nickname: 'Rainbow Dash',birth_date: Date.parse('2004-10-08')).reload}
 
   before :each do
-    preson1
+    person1
     person2
    end
 

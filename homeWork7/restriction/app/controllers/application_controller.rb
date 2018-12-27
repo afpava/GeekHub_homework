@@ -8,13 +8,10 @@ def require_login
     flash.now.alert = 'You must be logged in to view this site'
     render ('sessions/new.html.erb')
   end
-  #redirect_to login_url, notice: "Not authorized" if current_user.nil?
 end
 
 def authorize_admin
   redirect_to root_path, alert: 'You must be admin to view another user profile.' unless current_user.admin? || @user.id == current_user.id ||@post&.user&.id == current_user.id
-  #redirect_to root_path unless current_user.admin?
-  #redirects to previous page
 end
 
 def current_user

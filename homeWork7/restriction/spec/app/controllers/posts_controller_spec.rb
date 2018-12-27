@@ -88,32 +88,35 @@ RSpec.describe PostsController, type: :controller do
 
 
   describe 'PATCH#update' do
+    let(:post_params){post_params = {title:"This is test#{rand(1000)}", text:'Test message'}}
     let(:post1) {person1.posts.create(post_params)}
-
+    subject { patch :update, params: {user_id: post1.user.id, id: person1.id, post: post_ch_params} }
       before do
-        allow(controller).to receive(:current_user) {user}
+        allow(controller).to receive(:current_user) {person1}
         person1
         user
         post1
+
       end
 
 
       context 'as a user' do
-        subject { patch :update, params: { user_id: person1.id, id: post1.id, post_params: post_params } }
 
         context 'with valid params' do
-          let(:post_params) {post_params = { user_id: person1.id, text: 'Foo' } }
+          let(:post_ch_params) {post_params = {title: 'Foo', text: 'Foo' } }
 
           it 'updates requested record' do
             subject
-            expect(post1.reload.text).to eq(user_params[:text])
+            expect(post1.reload.text).to eq(post_ch_params[:text])
             expect(response).to redirect_to(root_path)
+
           end
 
         end
 
         context 'with invalid params' do
-          let(:user_params) { user_params = {email: nil } }
+          let(:post_ch_params) {post_params = {title: nil, text: nil } }
+
           it do
              subject
              expect(response).to render_template(:edit)
@@ -121,6 +124,7 @@ RSpec.describe PostsController, type: :controller do
         end
 
       end
+
 
     end #PUT update
 
