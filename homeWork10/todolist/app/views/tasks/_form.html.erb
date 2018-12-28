@@ -1,27 +1,24 @@
 <%= form_with model: [ parent, children ], local: true do |form| %>
 
 
-  <div class="container">
-    <div class="col-sm-12">
-      <div class="card card-default">
-        <div class="card-body">
-        <%#= form.label :name %>
-          <%= form.text_field :title , class: 'input-block-level', placeholder: "#{pl_text} title" %>
-        </div>
-
-
-          <%= form.text_field :text %>
-          <%= form.select :priority, Task.priorities.keys  %>
-
-
-              <div class="container-fluid">
-                 <div class="actions">
-                      <%= form.submit  class: 'btn btn-outline-secondary' %>
-                </div>
-              </div>
-          </div>
-        </div>
+<div class="card card-default">
+    <div class="card-body row">
+      <div class="col-md">
+        <%= form.text_field :title, placeholder: "#{pl_text} title" %>
+      </div>
+      <div class="col-md-6">
+        <%= form.text_field :text, placeholder: "Text" %>
+      </div>
+    </div>
+    <div class="row container-fluid">
+      <div class="col-md group">
+        <%= form.submit class: 'btn btn-outline-secondary' %>
       </div>
 
+      <div class="col-md-3">
+        <%= form.select(:priority, Task.priorities.keys, {}, {class: 'dropdown-item'}) %>
+      </div>
+    </div>
+</div>
 
 <% end %>

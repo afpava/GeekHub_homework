@@ -26,11 +26,11 @@ class User < ApplicationRecord
   			user.uid = auth.uid
   			user.first_name = auth.info.first_name
   			user.last_name = auth.info.last_name
+        user.nickname = auth.info.name
   			user.email = auth.info.email
-  			user.avatar = auth.info.picture
+  			user.remote_avatar_url = auth.info.image
         user.password = user.password_confirmation = '1' +SecureRandom.urlsafe_base64(n=6, false)
   			user.save!
-        binding.pry
   		end
   	end
 
@@ -45,6 +45,11 @@ class User < ApplicationRecord
   def total_tasks
     self.tasks.size
   end
+
+  def uncompleted_tasks
+    self.tasks.size - self.tasks.where(completed: true).size
+  end
+
 
   def birthday_today?
     return nil unless self.birth_day?
