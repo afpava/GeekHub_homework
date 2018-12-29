@@ -8,6 +8,7 @@ RSpec.describe SessionsController, type: :controller do
   describe '#create' do
     context 'authenticate fail' do
       before(:each) { allow(controller).to receive(:require_login) {nil} }
+      let(:user_params) { email:'test@test.com',  password:'123test' }
 
       it 'session[:user_id] should == user.id' do
         post :create
@@ -27,19 +28,18 @@ RSpec.describe SessionsController, type: :controller do
 
     context 'authenticate successfully' do
       before(:each) { allow(controller).to receive(:require_login) {user} }
-
       it 'should redirect' do
+        post :create, user_params
         expects(:redirect_to_target_or_default).with(twikets_path)
-        post :create
       end
 
       it 'session[:user_id] should == user.id' do
-        post :create
+        post :create, user_params
         session[:user_id].should == user.id
       end
 
       it 'flash[:notice] should be set to success' do
-        post :create
+        post :create, user_params
         flash[:notice].should == "Logged in successfully."
       end
     end
@@ -48,7 +48,6 @@ RSpec.describe SessionsController, type: :controller do
   # # let(:person1) {User.create(email:'tw@com.com',password:'123test',nickname: 'Twilight Sparkle', birth_date: '2006-09-09').reload}
   # # let(:person2) {User.create(email:'rd@com.com',password:'123test',nickname: 'Rainbow Dash',birth_date: '2006-09-08').reload}
   #
-  # let(:user_params) { user_params = { email: 'test@test.com',  password:'123test' } }
   #
   # before do
   #   user_params
