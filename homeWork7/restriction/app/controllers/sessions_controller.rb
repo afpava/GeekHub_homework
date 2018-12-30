@@ -1,15 +1,15 @@
 class SessionsController < ApplicationController
 skip_before_action :require_login
 
-  def index
-    #redirect_to login_path
-  end
+  # def index
+  #   #redirect_to login_path
+  # end
   def new
     redirect_to root_path
   end
 
   def create
-        user = User.find_by(email: params[:email])
+          user = User.find_by(email: params[:email])
        if user && user.authenticate(params[:password])
          session[:user_id] = user.id
          redirect_to root_path
@@ -24,10 +24,5 @@ def destroy
   session[:user_id] = nil
   redirect_to root_url, notice: "Logged out!"
 end
-
-private
-  def session_params
-      params.require(:session).permit(:email, :password)
-  end
 
 end

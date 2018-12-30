@@ -98,6 +98,22 @@ end
 
   end #fill_name
 
+  describe "#total_posts" do
+
+      let(:user) { User.create(email: 'test@test.com', nickname: 'Test', first_name: 'First', last_name: 'Super', birth_date: '01-01-1900', password:'123test' ) }
+      let(:post_first) { user.posts.create(title:"test",text:"test") }
+      let(:post_last) { user.posts.create(title:"test1",text:"test1") }
+
+    it "should return 2 posts" do
+      user
+      post_last
+      post_first
+      
+      expect(user.total_posts).to eq (user.posts.count)
+    end
+
+  end #total_posts
+
   context "Time related birthdays" do
     let(:user) { User.create(email: 'test@test.com', nickname: 'Test', first_name: 'First', last_name: 'Super', birth_date: '01-01-1954', password:'123test' ) }
     let(:person1) {User.create(email:'tw@com.com',password:'123test',nickname: 'Twilight Sparkle', birth_date: Date.parse('2006-09-09')).reload}

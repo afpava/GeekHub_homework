@@ -29,12 +29,12 @@ class User < ApplicationRecord
     [self.first_name, self.last_name].join(" ") if !self.first_name.blank? && !self.last_name.blank?
   end
 
-  def age
-    ((Time.now - self.birth_date.to_time) / 1.year.seconds).floor
-  end
-
   def total_posts
     self.posts.size
+  end
+
+  def age
+    ((Time.now - self.birth_date.to_time) / 1.year.seconds).floor
   end
 
   def birthday_today?
